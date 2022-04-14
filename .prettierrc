@@ -1,0 +1,11 @@
+{
+  "semi": true,
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 150,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "space-before-function-paren": true,
+  "insertSpaceBeforeFunctionParenthesis": true,
+  "insertSpaceAfterFunctionKeywordForAnonymousFunctions": true
+}

@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String  @id @default(uuid())
+  email                String  @unique
+  name                 String
+  picture              String
+  passwords            String
+  passwordResetToken   String?
+  passwordResetExpires String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  properties Property[]
+
+  @@map("users")
+}
+
+model Property {
+  id        String  @id @default(uuid())
+  name      String
+  zipcode   String
+  latitude  String
+  longitude String
+  city      String?
+  state     String?
+  ibgeCode  String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  cultives Cultive[]
+  user     User?     @relation(fields: [userId], references: [id])
+  userId   String?
+
+  @@map("properties")
+}
+
+model Cultive {
+  id                  String            @id @default(uuid())
+  areaTotal           Float
+  expectedProduction  Float?
+  realProduction      Float?
+  description         String?
+  photo               String?
+  plantsPerMeter      Int
+  metersBetweenPlants Float
+  status              enumCultiveStatus @default(pending)
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime?         @updatedAt
+
+  samples     CultiveSamples[]
+  coordinates CultiveCoordinates[]
+  property    Property?            @relation(fields: [propertyId], references: [id])
+  propertyId  String?
+
+  @@map("cultives")
+}
+
+model CultiveCoordinates {
+  id        String @id @default(uuid())
+  latitude  String
+  longitude String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  cultive   Cultive @relation(fields: [cultiveId], references: [id])
+  cultiveId String
+
+  @@map("cultiveCoordinates")
+}
+
+model CultiveSamples {
+  id           String  @id @default(uuid())
+  name         String
+  description  String?
+  grainsPlant1 Int
+  grainsPlant2 Int
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  cultive   Cultive? @relation(fields: [cultiveId], references: [id])
+  cultiveId String?
+
+  @@map("cultiveSamples")
+}
+
+enum enumCultiveStatus {
+  pending
+  inProduction
+  finished
+}
