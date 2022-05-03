@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ModulesModule } from './modules/modules.module';
 import { EnsureAuthenticated } from './providers/middleware/ensure.authenticated.middleware';
 import { ProvidersModule } from './providers/providers.module';
+import { UtilsModule } from './utils/utils.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ProvidersModule } from './providers/providers.module';
     }),
     ProvidersModule,
     ModulesModule,
+    UtilsModule,
   ],
   providers: [ConfigService],
 })
