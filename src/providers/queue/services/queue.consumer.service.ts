@@ -1,7 +1,7 @@
 import { OnQueueCompleted, OnQueueFailed, Process, Processor } from '@nestjs/bull';
 import { Job } from 'bull';
-import { SendMailDto } from '../mail/dto/send-mail.dto';
-import { MailService } from '../mail/mail.service';
+import { SendMailDto } from '../../mail/dto/send-mail.dto';
+import { MailService } from '../../mail/mail.service';
 
 @Processor('queue')
 export class QueueConsumerService {

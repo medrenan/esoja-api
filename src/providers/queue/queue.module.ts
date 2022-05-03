@@ -3,8 +3,8 @@ import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { Queue } from 'bull';
 import { MailService } from '../mail/mail.service';
-import { QueueConsumerService } from './queue.consumer.service';
-import { QueueProducerService } from './queue.producer.service';
+import { QueueConsumerService } from './services/queue.consumer.service';
+import { QueueProducerService } from './services/queue.producer.service';
 
 @Global()
 @Module({
