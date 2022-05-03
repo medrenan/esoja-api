@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@src/providers/prisma/prisma.service';
 import { QuerybuilderService } from '@src/providers/prisma/querybuilder/querybuilder.service';
 import defaultPlainToClass from '@src/utils/functions/default.plain.to.class.fn';
+import * as bcrypt from 'bcrypt';
 import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
@@ -18,7 +19,7 @@ export class UserService {
 
     delete createDto.passwordConfirmation;
 
-    const user = await this.prisma.user.create({ data: createDto });
+    const user = await this.prisma.user.create({ data: { ...createDto, password: bcrypt.hashSync(createDto.password, 10) } });
 
     const token = this.authService.generateToken(user.id, user.email, user.role);
 
