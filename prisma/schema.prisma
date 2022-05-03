@@ -11,11 +11,12 @@ datasource db {
 }
 
 model User {
-  id                   String  @id @default(uuid())
-  email                String  @unique
+  id                   String        @id @default(uuid())
+  email                String        @unique
   name                 String
-  picture              String
-  passwords            String
+  password             String
+  role                 enumUserRoles @default(owner)
+  picture              String?
   passwordResetToken   String?
   passwordResetExpires String?
 
@@ -102,4 +103,9 @@ enum enumCultiveStatus {
   pending
   inProduction
   finished
+}
+
+enum enumUserRoles {
+  owner
+  admin
 }
