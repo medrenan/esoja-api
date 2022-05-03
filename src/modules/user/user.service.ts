@@ -2,13 +2,14 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@src/providers/prisma/prisma.service';
 import { QuerybuilderService } from '@src/providers/prisma/querybuilder/querybuilder.service';
 import defaultPlainToClass from '@src/utils/functions/default.plain.to.class.fn';
+import { AuthService } from '../auth/auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FindUserDto } from './dto/find-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prisma: PrismaService, private readonly qb: QuerybuilderService) {}
+  constructor(private readonly prisma: PrismaService, private readonly qb: QuerybuilderService, private readonly authService: AuthService) {}
 
   async create(createDto: CreateUserDto) {
     const userExists = await this.prisma.user.findUnique({ where: { email: createDto.email } });
@@ -19,7 +20,9 @@ export class UserService {
 
     const user = await this.prisma.user.create({ data: createDto });
 
-    return { id: user.id };
+    const token = this.authService.generateToken(user.id, user.email, user.role);
+
+    return { id: user.id, token };
   }
 
   async findAll() {
