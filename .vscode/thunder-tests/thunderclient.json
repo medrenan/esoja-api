@@ -388,5 +388,24 @@
       "bearer": "{{token}}"
     },
     "tests": []
+  },
+  {
+    "_id": "39d2ebea-7865-4a8c-b904-b0be621daafb",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "924f83c9-78df-40e3-a285-22b182c1afcb",
+    "name": "sign in",
+    "url": "{{baseUrl}}v1/auth/sign-in",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-05-03T14:35:07.586Z",
+    "modified": "2022-05-03T14:38:23.052Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{ \"email\": \"cluster8@gmail.com\", \"password\": \"123123\" } ",
+      "form": []
+    },
+    "tests": []
   }
 ]
