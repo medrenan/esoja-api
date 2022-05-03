@@ -4,7 +4,7 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "picture" TEXT NOT NULL,
-    "passwords" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
     "passwordResetToken" TEXT,
     "passwordResetExpires" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
