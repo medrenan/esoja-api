@@ -13,9 +13,9 @@ import { QueueProducerService } from './services/queue.producer.service';
       imports: [ConfigModule],
       useFactory: async () => ({
         redis: {
-          port: 6379,
           host: process.env.REDIS_HOST,
           password: process.env.REDIS_PASS,
+          port: Number(process.env.REDIS_PORT) || 6379,
         },
       }),
       inject: [ConfigService],

@@ -14,7 +14,7 @@ import { CacheService } from './cache.service';
 
       socket: {
         host: process.env.REDIS_HOST,
-        port: 6379,
+        port: Number(process.env.REDIS_PORT) || 6379,
       },
     }),
   ],
