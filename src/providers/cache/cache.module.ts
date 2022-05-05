@@ -11,11 +11,7 @@ import { CacheService } from './cache.service';
       password: process.env.REDIS_PASS,
       isGlobal: true,
       ttl: 3600,
-
-      socket: {
-        host: process.env.REDIS_HOST,
-        port: Number(process.env.REDIS_PORT) || 6379,
-      },
+      url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT || 6379}`,
     }),
   ],
   providers: [CacheService],
