@@ -49,7 +49,7 @@ export class UserService {
 
     delete updateDto.passwordConfirmation;
 
-    await this.prisma.user.update({ where: { id: id }, data: updateDto });
+    await this.prisma.user.update({ where: { id: id }, data: { ...updateDto, password: bcrypt.hashSync(updateDto.password, 10) } });
   }
 
   async remove(id: string) {
