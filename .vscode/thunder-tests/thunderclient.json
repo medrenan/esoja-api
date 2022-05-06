@@ -288,7 +288,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-03T12:59:51.531Z",
-    "modified": "2022-05-03T13:02:17.535Z",
+    "modified": "2022-05-06T11:35:20.041Z",
     "headers": [],
     "params": [],
     "body": {
@@ -296,23 +296,30 @@
       "raw": "{\n  \"email\": \"cluster8@gmail.com\",\n  \"name\": \"cluster\",\n  \"picture\": \"www.google.com.br\",\n  \"password\": \"123123\",\n  \"passwordConfirmation\": \"123123\"\n}",
       "form": []
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.token",
+        "action": "setto",
+        "value": "{{token}}"
+      }
+    ]
   },
   {
     "_id": "67a72891-0e11-4c79-87b4-c0299ec835eb",
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "32bf3a3a-1960-4a53-98ea-f5fa1c3a9d73",
     "name": "update",
-    "url": "{{baseUrl}}v1/user/a5d9ab6e-42de-4a4c-aa36-a7e22503fb84",
+    "url": "{{baseUrl}}v1/user/fb1191a3-fc24-4fa4-9769-c9e205089057",
     "method": "PUT",
     "sortNum": 15000,
     "created": "2022-05-03T12:59:51.532Z",
-    "modified": "2022-05-03T13:03:43.371Z",
+    "modified": "2022-05-06T11:28:49.389Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"cluster8\"\n}",
+      "raw": "{\n  \"name\": \"admin\",\n  \"password\": \"123123\",\n  \"passwordConfirmation\": \"123123\"\n}",
       "form": []
     },
     "tests": []
@@ -398,14 +405,21 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-05-03T14:35:07.586Z",
-    "modified": "2022-05-03T14:38:23.052Z",
+    "modified": "2022-05-06T11:34:56.957Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{ \"email\": \"cluster8@gmail.com\", \"password\": \"123123\" } ",
+      "raw": "{ \"email\": \"admin@admin.com\", \"password\": \"123123\" } ",
       "form": []
     },
-    "tests": []
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.token",
+        "action": "setto",
+        "value": "{{token}}"
+      }
+    ]
   }
 ]

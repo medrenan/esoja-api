@@ -2,7 +2,7 @@
   {
     "_id": "e8ca26db-cc40-423e-98e8-bd2c46f8d7ed",
     "name": "local",
-    "default": true,
+    "default": false,
     "sortNum": 10000,
     "created": "2022-04-04T21:55:27.467Z",
     "modified": "2022-05-03T14:21:34.527Z",
@@ -14,6 +14,24 @@
       {
         "name": "token",
         "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijg4NjUzOTkwLTJiNjAtNDE3Mi1hZTg2LWJlMzJlY2U4Njc0ZiIsImVtYWlsIjoiY2x1c3RlcjhAZ21haWwuY29tIiwicm9sZXMiOiJvd25lciIsImlhdCI6MTY1MTU4NzY4MSwiZXhwIjoxNjU0MTc5NjgxfQ.phBPoCBfKVa3PdcUgGv1BcGSvaHhTcImSnscDWBJt2I"
+      }
+    ]
+  },
+  {
+    "_id": "33dd0def-6099-41c8-a739-34d314541fa7",
+    "name": "production",
+    "default": true,
+    "sortNum": 20000,
+    "created": "2022-05-06T11:11:08.767Z",
+    "modified": "2022-05-06T11:35:52.087Z",
+    "data": [
+      {
+        "name": "baseUrl",
+        "value": "https://api-esoja.herokuapp.com/"
+      },
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZiMTE5MWEzLWZjMjQtNGZhNC05NzY5LWM5ZTIwNTA4OTA1NyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZXMiOiJvd25lciIsImlhdCI6MTY1MTgzNjk1MiwiZXhwIjoxNjU0NDI4OTUyfQ.fhlrqYbnG_agxuIJ5FyRA7QhA2OYH_ddvw-mYCtW0wg"
       }
     ]
   }
