@@ -8,7 +8,7 @@ import { UtilsModule } from './utils/utils.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`.env.${process.env.NODE_ENV}`],
+      envFilePath: [`.env`],
       isGlobal: true,
     }),
     ProvidersModule,
