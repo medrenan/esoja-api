@@ -314,12 +314,12 @@
     "method": "PUT",
     "sortNum": 15000,
     "created": "2022-05-03T12:59:51.532Z",
-    "modified": "2022-05-06T11:28:49.389Z",
+    "modified": "2022-05-06T12:26:40.309Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"admin\",\n  \"password\": \"123123\",\n  \"passwordConfirmation\": \"123123\"\n}",
+      "raw": "{\n  \"name\": \"admin\",\n  \"password\": \"123123\",\n  \"passwordConfirmation\": \"123123\",\n  \"picture\": \"https://firebasestorage.googleapis.com/v0/b/esoja-345711.appspot.com/o/users%2Fimage.jpg?alt=media&token=0601ff17-ac24-47c3-8686-52a70c5edfeb\"\n}",
       "form": []
     },
     "tests": []
@@ -421,5 +421,19 @@
         "value": "{{token}}"
       }
     ]
+  },
+  {
+    "_id": "f1058a28-601e-4d42-8939-b7645f7f1d27",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "99155b27-ce29-4a37-8ade-4924098f2c10",
+    "name": "get main",
+    "url": "{{baseUrl}}v1/imea/main",
+    "method": "GET",
+    "sortNum": 50000,
+    "created": "2022-05-09T12:56:45.268Z",
+    "modified": "2022-05-09T12:57:14.042Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
