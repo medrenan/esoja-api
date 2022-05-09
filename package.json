@@ -9,7 +9,7 @@
     "start:local": "NODE_ENV=local nest start --debug --watch",
     "start:homolog": "NODE_ENV=homolog nest start --debug --watch",
     "start:prod": "node dist/main",
-    "prebuild": "rimraf dist",
+    "heroku-prebuild": "rimraf dist && npx prisma migrate deploy && npx prisma generate",
     "build": "nest build",
     "format": "prettier --write --loglevel=error \"src/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
