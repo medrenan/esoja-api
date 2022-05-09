@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CultiveService } from './cultive.service';
-import { CultiveController } from './cultive.controller';
+import { CultiveService } from './crud/cultive.service';
+import { CultiveController } from './crud/cultive.controller';
 
 @Module({
   controllers: [CultiveController],
   providers: [CultiveService],
+  imports: [],
 })
 export class CultiveModule {}
