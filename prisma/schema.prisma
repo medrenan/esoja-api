@@ -99,6 +99,21 @@ model CultiveSamples {
   @@map("cultiveSamples")
 }
 
+model ImeaLogs {
+  id   String            @id @default(uuid())
+  data Json?
+  type ImeaLogsTypes
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@map("imeaLogs")
+}
+
+enum ImeaLogsTypes {
+  main
+}
+
 enum enumCultiveStatus {
   pending
   inProduction
