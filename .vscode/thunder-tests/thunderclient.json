@@ -4,11 +4,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "c1945e78-6793-4100-accc-6e8f53f8c4f2",
     "name": "create",
-    "url": "{{baseUrl}}v1/property",
+    "url": "{{baseUrl}}/v1/property",
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-03-30T11:18:26.102Z",
-    "modified": "2022-04-04T11:11:22.527Z",
+    "modified": "2022-05-13T12:56:34.882Z",
     "headers": [],
     "params": [],
     "body": {
@@ -23,11 +23,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "c1945e78-6793-4100-accc-6e8f53f8c4f2",
     "name": "find",
-    "url": "{{baseUrl}}v1/property?select=name zipcode",
+    "url": "{{baseUrl}}/v1/property?select=name zipcode",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-03-30T11:44:05.310Z",
-    "modified": "2022-03-31T10:53:37.713Z",
+    "modified": "2022-05-13T12:56:45.954Z",
     "headers": [],
     "params": [
       {
@@ -48,11 +48,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "c1945e78-6793-4100-accc-6e8f53f8c4f2",
     "name": "update",
-    "url": "{{baseUrl}}v1/property/583acf50-4fe8-4a46-a828-5697105d34d4",
+    "url": "{{baseUrl}}/v1/property/583acf50-4fe8-4a46-a828-5697105d34d4",
     "method": "PUT",
     "sortNum": 15000,
     "created": "2022-03-31T10:49:54.598Z",
-    "modified": "2022-03-31T11:07:14.773Z",
+    "modified": "2022-05-13T12:56:38.245Z",
     "headers": [],
     "params": [],
     "body": {
@@ -67,11 +67,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "c1945e78-6793-4100-accc-6e8f53f8c4f2",
     "name": "find by id",
-    "url": "{{baseUrl}}v1/property/583acf50-4fe8-4a46-a828-5697105d34d4?select=name zipcode",
+    "url": "{{baseUrl}}/v1/property/583acf50-4fe8-4a46-a828-5697105d34d4?select=name zipcode",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-03-31T10:50:34.519Z",
-    "modified": "2022-03-31T10:53:47.680Z",
+    "modified": "2022-05-13T12:56:49.355Z",
     "headers": [],
     "params": [
       {
@@ -92,11 +92,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "c1945e78-6793-4100-accc-6e8f53f8c4f2",
     "name": "delete",
-    "url": "{{baseUrl}}v1/property/00847fa7-6cfe-47ca-ac0b-f997e4d599b7",
+    "url": "{{baseUrl}}/v1/property/00847fa7-6cfe-47ca-ac0b-f997e4d599b7",
     "method": "DELETE",
     "sortNum": 17500,
     "created": "2022-03-31T11:10:02.870Z",
-    "modified": "2022-03-31T11:10:51.152Z",
+    "modified": "2022-05-13T12:56:42.555Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -136,16 +136,16 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "bece35b6-e3e0-40a1-b69f-b2feca4f659b",
     "name": "create",
-    "url": "{{baseUrl}}v1/cultive",
+    "url": "{{baseUrl}}/v1/cultive",
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-04-01T13:12:25.928Z",
-    "modified": "2022-04-08T11:27:25.945Z",
+    "modified": "2022-05-13T13:44:32.967Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"propertyId\": \"dd03b8e5-465b-46b9-9d2f-6f5915940669\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"26,2\",\n      \"longitude\": \"26,2\"\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter\": 10,\n  \"metersBetweenPlants\": 0.12,\n  \"description\": \"plantação 1\"\n}",
+      "raw": "{\n  \"propertyId\": \"e6ed88bc-c885-4657-a63c-caa46c433c0b\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"26,2\",\n      \"longitude\": \"26,2\"\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter\": 10,\n  \"metersBetweenPlants\": 0.12,\n  \"description\": \"plantação 1\",\n  \"cropYear\": \"2021-2022\",\n  \"plantingDate\": \"2021-01-01\"\n}",
       "form": []
     },
     "tests": []
@@ -434,6 +434,72 @@
     "modified": "2022-05-09T12:57:14.042Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "0b366d9d-91f6-4226-98b5-1ecd4019519a",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "39e6bb9e-8b18-43b1-b21a-e795603150ef",
+    "name": "get obtentores",
+    "url": "{{baseUrl}}/v1/agritec/obtentores",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2022-05-13T12:54:57.987Z",
+    "modified": "2022-05-13T12:59:48.010Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ea418835-d326-42cb-a2a5-24e7540c1a6f",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "39e6bb9e-8b18-43b1-b21a-e795603150ef",
+    "name": "get cultivares",
+    "url": "{{baseUrl}}/v1/agritec/cultivares",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-05-13T13:03:52.704Z",
+    "modified": "2022-05-13T13:23:02.683Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer"
+    },
+    "tests": []
+  },
+  {
+    "_id": "5a065b3f-5783-41b7-8973-8cd5bdbe54b3",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "39e6bb9e-8b18-43b1-b21a-e795603150ef",
+    "name": "get produtividade",
+    "url": "{{baseUrl}}/v1/agritec/produtividade",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2022-05-13T13:42:31.771Z",
+    "modified": "2022-05-13T13:44:39.136Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\",\n  \"idCultivar\": \"242817\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer"
+    },
     "tests": []
   }
 ]
