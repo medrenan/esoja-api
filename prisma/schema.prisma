@@ -55,6 +55,8 @@ model Cultive {
   realProduction      Float?
   description         String?
   photo               String?
+  cropYear            String
+  plantingDate        String
   plantsPerMeter      Int
   metersBetweenPlants Float
   status              enumCultiveStatus @default(pending)
@@ -100,7 +102,7 @@ model CultiveSamples {
 }
 
 model ImeaLogs {
-  id   String            @id @default(uuid())
+  id   String        @id @default(uuid())
   data Json?
   type ImeaLogsTypes
 
