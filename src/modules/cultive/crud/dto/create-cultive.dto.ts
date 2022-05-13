@@ -1,4 +1,6 @@
 import { enumCultiveStatus } from '@prisma/client';
+import { IsCropYear } from '@src/utils/decorators/crop.year.decorator';
+import { IsPlantingDate } from '@src/utils/decorators/planting.date.decorator';
 import { Expose, Transform, Type, plainToClass } from 'class-transformer';
 import { IsArray, IsEnum, IsLatitude, IsLongitude, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID, IsUrl, ValidateNested } from 'class-validator';
 
@@ -13,6 +15,16 @@ export class CreateCultiveDto {
   @ValidateNested({ each: true })
   @Transform((data) => removeDuplicates(data.obj.cultiveCoordinates))
   cultiveCoordinates: CultiveCoordinatesDto[];
+
+  @IsString()
+  @IsCropYear()
+  @IsNotEmpty()
+  cropYear: string;
+
+  @IsString()
+  @IsPlantingDate()
+  @IsNotEmpty()
+  plantingDate: string;
 
   @IsNumber()
   @IsNotEmpty()
