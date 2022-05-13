@@ -501,5 +501,19 @@
       "type": "bearer"
     },
     "tests": []
+  },
+  {
+    "_id": "c2e2d611-9865-42de-b720-1bb1c8c32ba9",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "",
+    "name": "healthcheck",
+    "url": "{{baseUrl}}/v1/admin/healthcheck",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2022-05-13T14:40:51.856Z",
+    "modified": "2022-05-13T14:41:03.961Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
