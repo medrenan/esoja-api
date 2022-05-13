@@ -1,5 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { PrismaService } from '../prisma/prisma.service';
+import { AgritecGetCultivaresByObtentorDto } from './dto/cultivares.by.obtentor.dto';
+import { AgritecGetObtentorDto } from './dto/obtentor.dto';
+import { AgritecGetProdutividadeDto } from './dto/produtividade.dto';
+import { AgritecCultivaresI } from './interface/agritec.cultivares.interface';
+import { AgritecProdutividadeI, AgritecResponseProdutividadeI } from './interface/agritec.produtividade.interface';
 
 @Injectable()
 export class AgritecService {
@@ -9,12 +15,7 @@ export class AgritecService {
 
   culturaAgritec = { id: 60, cultura: 'SOJA' };
 
-  constructor() {
-    setTimeout(async () => {
-      await this.getCultivaresObtentor();
-      await this.getCultivaresByObtentor();
-    }, 2000);
-  }
+  constructor(private readonly prisma: PrismaService) {}
 
   async getToken() {
     const apiUrl = `https://api.cnptia.embrapa.br/token`;
@@ -27,71 +28,77 @@ export class AgritecService {
     };
   }
 
-  async getCultivaresObtentor() {
-    const query = `?safra=2020-2021&uf=SP&idCultura=60`;
+  async getObtentores(bodyDto: AgritecGetObtentorDto) {
+    const query = `?safra=${bodyDto.safra}&uf=${bodyDto.uf}&idCultura=${this.culturaAgritec.id}`;
 
-    const obtentor: string[] = [];
+    const obtentores: string[] = [];
 
     const res: AgritecCultivaresI[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
         console.log(err.response);
+
+        throw new BadRequestException('Error in search to agritec');
       });
 
     res.forEach((value) => {
-      if (!obtentor.includes(value.obtentorMantenedor)) obtentor.push(value.obtentorMantenedor);
+      if (!obtentores.includes(value.obtentorMantenedor)) obtentores.push(value.obtentorMantenedor);
     });
 
-    console.log(obtentor);
+    return obtentores;
   }
 
-  async getCultivaresByObtentor() {
-    const query = `?safra=2020-2021&uf=SP&idCultura=60&obtentorMantenedor=AGRO NORTE PESQUISA E`;
+  async getCultivaresByObtentor(bodyDto: AgritecGetCultivaresByObtentorDto) {
+    const query = `?safra=${bodyDto.safra}&uf=${bodyDto.uf}&idCultura=${this.culturaAgritec.id}&obtentorMantenedor=${bodyDto.obtentorMantenedor}`;
 
-    const res: AgritecCultivaresI[] = await axios
+    const cultivares: AgritecCultivaresI[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
         console.log(err.response);
+
+        throw new BadRequestException('Error in search to agritec');
       });
 
-    res.filter((value) => value.obtentorMantenedor === 'AGRO NORTE PESQUISA E');
-
-    console.log(res);
+    return cultivares;
   }
 
-  async getCultivaresData() {
-    const query = `?safra=2020-2021&uf=SP&idCultura=60&obtentorMantenedor=AGRO NORTE PESQUISA E`;
+  async getProdutividade(bodyDto: AgritecGetProdutividadeDto) {
+    const capacidadeDeAguaNoSolo = 50; // não temos essa informação
+    const expectativaProdutividade = 0; // não temos essa informação ainda, podemos tentar fazer os calculos
 
-    const res: AgritecCultivaresI[] = await axios
-      .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
+    const cultive = await this.prisma.cultive.findUnique({ where: { id: bodyDto.cultiveId }, include: { property: true } });
+
+    if (!cultive) throw new BadRequestException('Cultive not found');
+
+    const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${bodyDto.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${expectativaProdutividade}`;
+
+    const res: AgritecResponseProdutividadeI = await axios
+      .get(this.apiUrl + 'produtividade' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log(err.response);
+        console.log(err);
+
+        throw new BadRequestException('Error in search to agritec');
       });
 
-    res.filter((value) => value.obtentorMantenedor === 'AGRO NORTE PESQUISA E');
+    const productivity: AgritecProdutividadeI[] = [];
 
-    console.log(res);
+    for (let i = 0; i < res.balancoHidrico.length; i++) {
+      productivity.push({
+        balancoHidrico: res.balancoHidrico[i],
+        deficienciaHidrica: res.deficienciaHidrica[i],
+        excedenteHidrico: res.excedenteHidrico[i],
+        grausDia: res.grausDia[i],
+        precipitacao: res.precipitacao[i],
+        produtividadeAlmejada: res.produtividadeAlmejada[i],
+        produtividadeMediaMunicipio: res.produtividadeMediaMunicipio[i],
+        temperaturaMaxima: res.temperaturaMaxima[i],
+        temperaturaMinima: res.temperaturaMinima[i],
+      });
+    }
+
+    return productivity;
   }
-}
-
-interface AgritecCultivaresI {
-  idCultivar: number;
-  idCultura: number;
-  safra: string;
-  numeroRnc: string;
-  obtentorMantenedor: string;
-  cultivar: string;
-  cultura: string;
-  potencialProdutivo: number;
-  duracaoCiclo: number;
-  uf: string;
-  grupo: string;
-  maturacaoFisiologica: number;
-  floracao: number;
-  dataAtualizacao: string;
-  regiao: string;
-  grupoBioClimatico: string;
 }
