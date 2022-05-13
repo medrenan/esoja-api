@@ -2,12 +2,12 @@ import { Injectable } from '@nestjs/common';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 @Injectable()
-export class AgritechService {
+export class AgritecService {
   apiToken: string;
   apiUrl = `https://api.cnptia.embrapa.br/agritec/v1/`;
   apiConfig: AxiosRequestConfig = { headers: { accept: 'application/json', Authorization: `Bearer ${process.env.AGRITECH_TOKEN}` } };
 
-  culturaAgritech = { id: 60, cultura: 'SOJA' };
+  culturaAgritec = { id: 60, cultura: 'SOJA' };
 
   constructor() {
     setTimeout(async () => {
@@ -32,7 +32,7 @@ export class AgritechService {
 
     const obtentor: string[] = [];
 
-    const res: AgritechCultivaresI[] = await axios
+    const res: AgritecCultivaresI[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
@@ -49,7 +49,7 @@ export class AgritechService {
   async getCultivaresByObtentor() {
     const query = `?safra=2020-2021&uf=SP&idCultura=60&obtentorMantenedor=AGRO NORTE PESQUISA E`;
 
-    const res: AgritechCultivaresI[] = await axios
+    const res: AgritecCultivaresI[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
@@ -64,7 +64,7 @@ export class AgritechService {
   async getCultivaresData() {
     const query = `?safra=2020-2021&uf=SP&idCultura=60&obtentorMantenedor=AGRO NORTE PESQUISA E`;
 
-    const res: AgritechCultivaresI[] = await axios
+    const res: AgritecCultivaresI[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
@@ -77,7 +77,7 @@ export class AgritechService {
   }
 }
 
-interface AgritechCultivaresI {
+interface AgritecCultivaresI {
   idCultivar: number;
   idCultura: number;
   safra: string;
