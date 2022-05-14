@@ -50,7 +50,7 @@ export class ImeaService {
 
       const imeaMainPageData = defaultPlainToClass(ImeaMainPageRedisDto, { availableSoybeanPack, conventionalSeed });
 
-      await this.cache.set('imeaMainPage', imeaMainPageData);
+      await this.cache.set('imeaMainPage', imeaMainPageData, { ttl: 3600 * 5 });
 
       await this.prisma.imeaLogs.create({ data: { data: instanceToPlain(imeaMainPageData), type: 'main' } });
 
