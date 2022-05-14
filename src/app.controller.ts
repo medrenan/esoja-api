@@ -16,11 +16,14 @@ export class AppController {
       });
     });
 
+    console.log('commit', commit);
+
     return {
       author: commit.author.name,
       subject: commit.subject,
       commitedOn: DateTime.fromSeconds(Number(commit.committedOn)).toFormat('dd/mm/yyyy hh:mm:ss'),
     };
+
     return commit;
   }
 }
