@@ -24,7 +24,7 @@ export class ImeaService {
 
         const imeaLogsData = defaultPlainToClass(ImeaMainPageRedisDto, imeaLogs.data);
 
-        await this.cache.set('imeaMainPage', imeaLogsData);
+        await this.cache.set('imeaMainPage', imeaLogsData, { ttl: 3600 * 5 });
 
         return imeaLogsData;
       }
@@ -59,25 +59,6 @@ export class ImeaService {
       console.log(err);
     }
   }
-
-  // async getDataDashboard() {
-  //   try {
-  //     const data = await this.getImea();
-
-  //     const disponivelId = '708192508838936580';
-
-  //     const availableQuote = data.find((quotation) => quotation.IndicadorFinalId === disponivelId && quotation.Localidade === 'Mato Grosso');
-
-  //     const conventionalSeedQuote = data.find((quotation) => quotation.IndicadorFinalId === '3' && quotation.Localidade === 'Convencional');
-  //     const transgenicSeedQuote = data.find((quotation) => quotation.IndicadorFinalId === '3' && quotation.Localidade === 'Transgênica');
-
-  //     console.log('transgenicSeedQuote', transgenicSeedQuote);
-
-  //     return [availableQuote, conventionalSeedQuote];
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 
   async getImea() {
     const imeaUrl = `https://api1.imea.com.br/api/v2/mobile/cadeias/4/cotacoes`;
