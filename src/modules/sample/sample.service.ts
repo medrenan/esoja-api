@@ -2,7 +2,6 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@src/providers/prisma/prisma.service';
 import { QuerybuilderService } from '@src/providers/prisma/querybuilder/querybuilder.service';
 import { CreateSampleDto } from './dto/create-sample.dto';
-import { UpdateSampleDto } from './dto/update-sample.dto';
 
 @Injectable()
 export class SampleService {
@@ -13,15 +12,15 @@ export class SampleService {
 
     if (!cultive) throw new BadRequestException('Cultive not found');
 
-    if (cultive.samples.length >= 3) throw new BadRequestException('This cultive already has 3 samples');
+    if (cultive.samples.length) throw new BadRequestException('This cultive already has 3 samples');
 
-    const sample = await this.prisma.cultiveSamples.create({ data: createDto });
+    const samples = await this.prisma.cultiveSamples.createMany({ data: createDto.samples.map((v) => ({ cultiveId: createDto.cultiveId, ...v })) });
 
-    return sample;
+    return samples;
   }
 
   async findAll() {
-    const query = await this.qb.query('sample');
+    const query = await this.qb.query('cultiveSamples');
 
     return this.prisma.cultiveSamples.findMany(query).catch(() => {
       throw new BadRequestException('Error on proccess your query, please check your parameters');
@@ -36,11 +35,11 @@ export class SampleService {
     return sample;
   }
 
-  async update(id: string, updateDto: UpdateSampleDto) {
-    const sample = await this.prisma.cultiveSamples.findUnique({ where: { id: id } });
+  // async update(id: string, updateDto: UpdateSampleDto) {
+  //   const sample = await this.prisma.cultiveSamples.findUnique({ where: { id: id } });
 
-    if (!sample) throw new BadRequestException('Sample not found');
+  //   if (!sample) throw new BadRequestException('Sample not found');
 
-    await this.prisma.cultiveSamples.update({ where: { id: id }, data: updateDto });
-  }
+  //   await this.prisma.cultiveSamples.update({ where: { id: id }, data: updateDto });
+  // }
 }
