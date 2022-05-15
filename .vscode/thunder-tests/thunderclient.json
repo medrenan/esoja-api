@@ -23,16 +23,17 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "c1945e78-6793-4100-accc-6e8f53f8c4f2",
     "name": "find",
-    "url": "{{baseUrl}}/v1/property?select=name zipcode",
+    "url": "{{baseUrl}}/v1/property",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-03-30T11:44:05.310Z",
-    "modified": "2022-05-13T12:56:45.954Z",
+    "modified": "2022-05-15T16:25:58.465Z",
     "headers": [],
     "params": [
       {
         "name": "select",
         "value": "name zipcode",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -140,12 +141,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-04-01T13:12:25.928Z",
-    "modified": "2022-05-13T13:44:32.967Z",
+    "modified": "2022-05-15T16:17:14.866Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"propertyId\": \"e6ed88bc-c885-4657-a63c-caa46c433c0b\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"22,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"23,2\",\n      \"longitude\": \"23,2\"\n    },\n    {\n      \"latitude\": \"26,2\",\n      \"longitude\": \"26,2\"\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter\": 10,\n  \"metersBetweenPlants\": 0.12,\n  \"description\": \"plantação 1\",\n  \"cropYear\": \"2021-2022\",\n  \"plantingDate\": \"2021-01-01\"\n}",
+      "raw": "{\n  \"propertyId\": \"db0595d1-8714-4b00-af64-7b997573eb46\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": -23.30,\n      \"longitude\": 23.22\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter\": 10,\n  \"metersBetweenPlants\": 0.12,\n  \"description\": \"plantação 1\",\n  \"cropYear\": \"2021-2022\",\n  \"plantingDate\": \"2021-01-01\"\n}",
       "form": []
     },
     "tests": []
@@ -155,11 +156,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "bece35b6-e3e0-40a1-b69f-b2feca4f659b",
     "name": "find by id",
-    "url": "{{baseUrl}}v1/cultive/ba648711-791d-4a9c-98ed-7a0d85b7f738",
+    "url": "{{baseUrl}}/v1/cultive/dc857c9e-aac3-4f86-b9b1-97a6e1e4f855",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-04-01T13:12:25.928Z",
-    "modified": "2022-04-08T11:30:35.531Z",
+    "modified": "2022-05-15T16:17:31.422Z",
     "headers": [],
     "params": [],
     "body": {
@@ -226,16 +227,16 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "a2744b9a-cae4-41d3-b161-a43ff1f3ad67",
     "name": "create",
-    "url": "{{baseUrl}}v1/sample",
+    "url": "{{baseUrl}}/v1/sample",
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-04-11T11:11:51.374Z",
-    "modified": "2022-04-11T11:46:17.359Z",
+    "modified": "2022-05-15T16:20:41.394Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"cultiveId\": \"ba648711-791d-4a9c-98ed-7a0d85b7f738\",\n  \"name\": \"sample 1\",\n  \"description\": \"plantação 1\",\n  \"grainsPlant1\": 1,\n  \"grainsPlant2\": 2\n}",
+      "raw": "{\n  \"cultiveId\": \"dc857c9e-aac3-4f86-b9b1-97a6e1e4f855\",\n  \"samples\": [\n    {\n      \"name\": \"sample 1\",\n      \"description\": \"plantação 1\",\n      \"grainsPlant1\": 1,\n      \"grainsPlant2\": 2\n    },\n    {\n      \"name\": \"sample 2\",\n      \"description\": \"plantação 2\",\n      \"grainsPlant1\": 2,\n      \"grainsPlant2\": 3\n    },\n    {\n      \"name\": \"sample 3\",\n      \"description\": \"plantação 3\",\n      \"grainsPlant1\": 3,\n      \"grainsPlant2\": 4\n    }\n  ]\n}",
       "form": []
     },
     "tests": []
@@ -245,11 +246,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "a2744b9a-cae4-41d3-b161-a43ff1f3ad67",
     "name": "find by id",
-    "url": "{{baseUrl}}v1/sample/f7e3ca61-b880-415e-a618-143869d3f6cc",
+    "url": "{{baseUrl}}/v1/sample/f7e3ca61-b880-415e-a618-143869d3f6cc",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-04-11T11:11:51.374Z",
-    "modified": "2022-04-11T11:46:34.250Z",
+    "modified": "2022-05-15T16:21:11.947Z",
     "headers": [],
     "params": [],
     "body": {
@@ -264,16 +265,17 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "a2744b9a-cae4-41d3-b161-a43ff1f3ad67",
     "name": "find",
-    "url": "{{baseUrl}}v1/sample?select=name description grainsPlant1 grainsPlant2 cultiveId",
+    "url": "{{baseUrl}}/v1/sample",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-04-11T11:11:51.374Z",
-    "modified": "2022-04-11T12:39:45.645Z",
+    "modified": "2022-05-15T16:26:03.381Z",
     "headers": [],
     "params": [
       {
         "name": "select",
-        "value": "name description grainsPlant1 grainsPlant2 cultiveId",
+        "value": "all",
+        "isDisabled": true,
         "isPath": false
       }
     ],
