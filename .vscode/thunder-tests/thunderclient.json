@@ -346,11 +346,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "32bf3a3a-1960-4a53-98ea-f5fa1c3a9d73",
     "name": "find",
-    "url": "{{baseUrl}}v1/user?select=id name email",
+    "url": "{{baseUrl}}/v1/user?select=id name email",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-05-03T12:59:51.534Z",
-    "modified": "2022-05-03T14:22:32.697Z",
+    "modified": "2022-05-15T23:39:22.417Z",
     "headers": [],
     "params": [
       {
@@ -404,11 +404,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "924f83c9-78df-40e3-a285-22b182c1afcb",
     "name": "sign in",
-    "url": "{{baseUrl}}v1/auth/sign-in",
+    "url": "{{baseUrl}}/v1/auth/sign-in",
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-05-03T14:35:07.586Z",
-    "modified": "2022-05-06T11:34:56.957Z",
+    "modified": "2022-05-15T23:29:24.347Z",
     "headers": [],
     "params": [],
     "body": {
@@ -518,5 +518,31 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "6c828430-7182-44e9-9312-1d38585430a3",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "924f83c9-78df-40e3-a285-22b182c1afcb",
+    "name": "social sign in",
+    "url": "{{baseUrl}}/v1/auth/social-sign-in",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-05-15T23:29:07.131Z",
+    "modified": "2022-05-15T23:51:19.586Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"provider\": \"facebook\",\n  \"token\": \"EAAOlc8JoZBpQBAGkr8qnmnAACB3AJI4tQUf3jmGLeXjnAfMVDQOoHZCsn6YjUVAXRTHmiAAfN8nzvAbUmXj03V4G1bliGvl9EZA3ZB6p0nWyLhrnfjw1iEmfGl4fUN3z9VPxC71sbYaw9jlgZBf4sDJCVp8ZCG9m06ssP78qLxXXrRlZATGWrQE\"\n}",
+      "form": []
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.token",
+        "action": "setto",
+        "value": "{{token}}"
+      }
+    ]
   }
 ]
