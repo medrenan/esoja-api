@@ -65,7 +65,7 @@ model Cultive {
 
   samples     CultiveSamples[]
   coordinates CultiveCoordinates[]
-  property    Property?            @relation(fields: [propertyId], references: [id])
+  property    Property?            @relation(onDelete: Cascade, onUpdate: Cascade, fields: [propertyId], references: [id])
   propertyId  String?
 
   @@map("cultives")
@@ -79,7 +79,7 @@ model CultiveCoordinates {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
-  cultive   Cultive @relation(fields: [cultiveId], references: [id])
+  cultive   Cultive @relation(onDelete: Cascade, fields: [cultiveId], references: [id])
   cultiveId String
 
   @@map("cultiveCoordinates")
@@ -95,7 +95,7 @@ model CultiveSamples {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
-  cultive   Cultive? @relation(fields: [cultiveId], references: [id])
+  cultive   Cultive? @relation(onDelete: Cascade, fields: [cultiveId], references: [id])
   cultiveId String?
 
   @@map("cultiveSamples")
