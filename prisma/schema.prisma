@@ -14,7 +14,7 @@ model User {
   id                   String        @id @default(uuid())
   email                String        @unique
   name                 String
-  password             String
+  password             String?
   role                 enumUserRoles @default(owner)
   picture              String?
   passwordResetToken   String?
