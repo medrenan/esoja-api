@@ -32,8 +32,8 @@ model Property {
   id        String  @id @default(uuid())
   name      String
   zipcode   String
-  latitude  String
-  longitude String
+  latitude  Float
+  longitude Float
   city      String?
   state     String?
   ibgeCode  String?
@@ -73,8 +73,8 @@ model Cultive {
 
 model CultiveCoordinates {
   id        String @id @default(uuid())
-  latitude  String
-  longitude String
+  latitude  Float
+  longitude Float
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
