@@ -58,12 +58,12 @@ export class CultiveCoordinatesDto {
   @IsLatitude()
   @IsNotEmpty()
   @Expose()
-  latitude: string;
+  latitude: number;
 
   @IsLongitude()
   @IsNotEmpty()
   @Expose()
-  longitude: string;
+  longitude: number;
 }
 
 function removeDuplicates(data: CultiveCoordinatesDto[] = []) {

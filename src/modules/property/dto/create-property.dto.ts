@@ -20,9 +20,9 @@ export class CreatePropertyDto {
 
   @IsLatitude()
   @IsNotEmpty()
-  latitude: string;
+  latitude: number;
 
   @IsLongitude()
   @IsNotEmpty()
-  longitude: string;
+  longitude: number;
 }
