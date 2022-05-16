@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable, forwardRef } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import defaultPlainToClass from '@src/utils/functions/default.plain.to.class.fn';
 import { FindUserDto } from '../user/dto/find-user.dto';
@@ -6,16 +6,10 @@ import * as bcrypt from 'bcrypt';
 import { PrismaService } from '@src/providers/prisma/prisma.service';
 import axios from 'axios';
 import { SocialSignInDto } from './dto/social.sign.in.dto';
-import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly jwtService: JwtService,
-    @Inject(forwardRef(() => UserService))
-    private readonly userService: UserService,
-  ) {}
+  constructor(private readonly prisma: PrismaService, private readonly jwtService: JwtService) {}
 
   generateToken(id: string, email: string, roles: string[] | string) {
     const payload = { id: id, email: email, roles: roles };
@@ -26,7 +20,7 @@ export class AuthService {
   }
 
   async signIn(email: string, password: string) {
-    const user = await this.prisma.user.findUnique({ where: { email } });
+    const user = await this.prisma.user.findFirst({ where: { email: email } });
 
     if (!user) throw new BadRequestException('Incorrect email/password combination');
 
@@ -61,9 +55,9 @@ export class AuthService {
 
     const user = await this.prisma.user.findUnique({ where: { socialId: googleUser.id } });
 
-    if (user) return { id: user.id, token: this.generateToken(user.id, user.email, user.role) };
+    if (user) return { user: defaultPlainToClass(FindUserDto, user), token: this.generateToken(user.id, user.email, user.role) };
 
-    return this.userService.createUserBySocialSignIn('google', googleUser.id, googleUser.email, googleUser.name, googleUser.picture);
+    return this.createUserBySocialSignIn('google', googleUser.id, googleUser.email, googleUser.name, googleUser.picture);
   }
 
   private async facebookSignIn(token: string) {
@@ -80,15 +74,21 @@ export class AuthService {
 
     const user = await this.prisma.user.findUnique({ where: { socialId: facebookUser.id } });
 
-    if (user) return { id: user.id, token: this.generateToken(user.id, user.email, user.role) };
+    if (user) return { user: defaultPlainToClass(FindUserDto, user), token: this.generateToken(user.id, user.email, user.role) };
 
-    return this.userService.createUserBySocialSignIn(
-      'facebook',
-      facebookUser.id,
-      facebookUser.email,
-      facebookUser.name,
-      facebookUser.picture.data.url,
-    );
+    return this.createUserBySocialSignIn('facebook', facebookUser.id, facebookUser.email, facebookUser.name, facebookUser.picture.data.url);
+  }
+
+  private async createUserBySocialSignIn(provider: 'google' | 'facebook', socialId: string, email: string, name: string, picture: string) {
+    const userExists = await this.prisma.user.findFirst({ where: { OR: [{ socialId: socialId }, { email: email }] } });
+
+    if (userExists) throw new BadRequestException('User already exists');
+
+    const user = await this.prisma.user.create({ data: { provider, socialId, email, name, picture } });
+
+    const token = this.generateToken(user.id, user.email, user.role);
+
+    return { user: defaultPlainToClass(FindUserDto, user), token: token };
   }
 }
 

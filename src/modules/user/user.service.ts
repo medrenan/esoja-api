@@ -26,18 +26,6 @@ export class UserService {
     return { id: user.id, token };
   }
 
-  async createUserBySocialSignIn(provider: 'google' | 'facebook', socialId: string, email: string, name: string, picture: string) {
-    const userExists = await this.prisma.user.findFirst({ where: { OR: [{ socialId: socialId }, { email: email }] } });
-
-    if (userExists) throw new BadRequestException('User already exists');
-
-    const user = await this.prisma.user.create({ data: { provider, socialId, email, name, picture } });
-
-    const token = this.authService.generateToken(user.id, user.email, user.role);
-
-    return { id: user.id, token };
-  }
-
   async findAll() {
     const query = await this.qb.query('user');
 
