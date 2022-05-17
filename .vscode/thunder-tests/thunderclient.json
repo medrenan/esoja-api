@@ -350,7 +350,7 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-05-03T12:59:51.534Z",
-    "modified": "2022-05-15T23:39:22.417Z",
+    "modified": "2022-05-17T13:25:49.583Z",
     "headers": [],
     "params": [
       {
@@ -430,11 +430,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "99155b27-ce29-4a37-8ade-4924098f2c10",
     "name": "get main",
-    "url": "{{baseUrl}}v1/imea/main",
+    "url": "{{baseUrl}}/v1/imea/main",
     "method": "GET",
     "sortNum": 50000,
     "created": "2022-05-09T12:56:45.268Z",
-    "modified": "2022-05-09T12:57:14.042Z",
+    "modified": "2022-05-17T13:23:00.456Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -448,12 +448,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-13T12:54:57.987Z",
-    "modified": "2022-05-13T12:59:48.010Z",
+    "modified": "2022-05-16T13:37:26.623Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\"\n}",
+      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\",\n  \n  \n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\"\n}",
       "form": []
     },
     "auth": {
@@ -470,12 +470,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-05-13T13:03:52.704Z",
-    "modified": "2022-05-13T13:23:02.683Z",
+    "modified": "2022-05-16T13:37:31.615Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
+      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\",\n  \n  \n  \n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
       "form": []
     },
     "auth": {
@@ -544,5 +544,23 @@
         "value": "{{token}}"
       }
     ]
+  },
+  {
+    "_id": "ca95bcb7-1424-40c6-b2b7-f22706ad39ff",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "d0a7665c-5775-46dd-af79-b126abb808fb",
+    "name": "reset",
+    "url": "{{baseurl}}/v1/admin/cache/reset",
+    "method": "GET",
+    "sortNum": 110000,
+    "created": "2022-05-17T13:44:20.331Z",
+    "modified": "2022-05-17T13:45:26.147Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
   }
 ]
