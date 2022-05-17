@@ -8,6 +8,9 @@ export class ImeaDto {
   Variacao: number;
 
   @Expose()
+  Valor: number;
+
+  @Expose()
   Safra: string;
 
   @Expose()
