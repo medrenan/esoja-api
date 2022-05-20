@@ -73,7 +73,7 @@ export class ImeaService {
 
     const availableData = plainToClass(ImeaDto, available?.data);
 
-    if (!available || availableData.Valor !== availableSoybeanPack.Valor) {
+    if (!available || availableData.Valor !== availableSoybeanPack.Valor || availableData.DataPublicacao !== availableSoybeanPack.DataPublicacao) {
       await this.prisma.imeaLogs.create({ data: { data: instanceToPlain(availableSoybeanPack), type: 'availableSoybeanPack' } });
     }
   }
@@ -83,7 +83,7 @@ export class ImeaService {
 
     const seedData = plainToClass(ImeaDto, seed?.data);
 
-    if (!seed || seedData.Valor !== conventionalSeed.Valor) {
+    if (!seed || seedData.Valor !== conventionalSeed.Valor || seedData.DataPublicacao !== conventionalSeed.DataPublicacao) {
       await this.prisma.imeaLogs.create({ data: { data: instanceToPlain(conventionalSeed), type: 'conventionalSeed' } });
     }
   }
