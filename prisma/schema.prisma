@@ -36,6 +36,7 @@ model Property {
   zipcode   String
   latitude  Float
   longitude Float
+  picture   String?
   city      String?
   state     String?
   ibgeCode  String?
