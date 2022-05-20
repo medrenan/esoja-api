@@ -12,4 +12,11 @@ export class ImeaController {
 
     Ok(result);
   }
+
+  @Get('dashboard')
+  async getDashboardData() {
+    const result = await this.imeaService.getDashboardData();
+
+    Ok(result);
+  }
 }
