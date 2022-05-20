@@ -143,12 +143,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-04-01T13:12:25.928Z",
-    "modified": "2022-05-15T16:39:26.862Z",
+    "modified": "2022-05-17T13:57:42.464Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"propertyId\": \"19595572-a227-4587-b702-84a6a6b24546\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": -23.30,\n      \"longitude\": 23.22\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter\": 10,\n  \"metersBetweenPlants\": 0.12,\n  \"description\": \"plantação 1\",\n  \"cropYear\": \"2021-2022\",\n  \"plantingDate\": \"2021-01-01\"\n}",
+      "raw": "{\n  \"propertyId\": \"f06c0076-2e76-4eda-b5ed-ab608f6df7b4\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": -23.30,\n      \"longitude\": 23.22\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter\": 10,\n  \"metersBetweenPlants\": 0.12,\n  \"description\": \"plantação 1\",\n  \"cropYear\": \"2021-2022\",\n  \"plantingDate\": \"2021-01-01\"\n}",
       "form": []
     },
     "tests": []
@@ -448,12 +448,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-13T12:54:57.987Z",
-    "modified": "2022-05-16T13:37:26.623Z",
+    "modified": "2022-05-17T13:58:07.442Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\",\n  \n  \n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\"\n}",
+      "raw": "{\n  \"cultiveId\": \"ffe2cebf-6882-4753-a812-b9e317cba195\"\n}",
       "form": []
     },
     "auth": {
@@ -470,12 +470,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-05-13T13:03:52.704Z",
-    "modified": "2022-05-16T13:37:31.615Z",
+    "modified": "2022-05-17T13:58:15.571Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\",\n  \n  \n  \n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
+      "raw": "{\n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
       "form": []
     },
     "auth": {
@@ -561,6 +561,20 @@
       "type": "bearer",
       "bearer": "{{token}}"
     },
+    "tests": []
+  },
+  {
+    "_id": "4509cb06-e87f-4fd8-b264-2b7103321a97",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "99155b27-ce29-4a37-8ade-4924098f2c10",
+    "name": "get dashboard",
+    "url": "{{baseUrl}}/v1/imea/dashboard",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-05-20T12:31:01.974Z",
+    "modified": "2022-05-20T12:31:12.533Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
