@@ -1,5 +1,5 @@
 import { IsZipcode } from '@src/utils/decorators/is.zipcode.decorator';
-import { IsLatitude, IsLongitude, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsLatitude, IsLongitude, IsNotEmpty, IsOptional, IsString, IsUUID, IsUrl } from 'class-validator';
 
 export class CreatePropertyDto {
   @IsUUID()
@@ -13,6 +13,11 @@ export class CreatePropertyDto {
   @IsZipcode()
   @IsNotEmpty()
   zipcode: string;
+
+  @IsUrl()
+  @IsNotEmpty()
+  @IsOptional()
+  picture: string;
 
   city: string;
   state: string;
