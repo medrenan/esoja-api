@@ -69,23 +69,23 @@ export class ImeaService {
   }
 
   async checkIfAvailableChangesAndSave(availableSoybeanPack: ImeaDto) {
-    const available = await this.prisma.imeaLogs.findFirst({ where: { type: 'availableSoybeanPack' } });
+    const available = await this.prisma.imeaLogs.findFirst({ where: { type: 'availableSoybeanPack' }, orderBy: { createdAt: 'desc' } });
 
     const availableData = plainToClass(ImeaDto, available?.data);
 
-    // if (!available || availableData.Valor !== availableSoybeanPack.Valor) {
-    await this.prisma.imeaLogs.create({ data: { data: instanceToPlain(availableSoybeanPack), type: 'availableSoybeanPack' } });
-    // }
+    if (!available || availableData.Valor !== availableSoybeanPack.Valor) {
+      await this.prisma.imeaLogs.create({ data: { data: instanceToPlain(availableSoybeanPack), type: 'availableSoybeanPack' } });
+    }
   }
 
   async checkIfSeedChangesAndSave(conventionalSeed: ImeaDto) {
-    const seed = await this.prisma.imeaLogs.findFirst({ where: { type: 'conventionalSeed' } });
+    const seed = await this.prisma.imeaLogs.findFirst({ where: { type: 'conventionalSeed' }, orderBy: { createdAt: 'desc' } });
 
     const seedData = plainToClass(ImeaDto, seed?.data);
 
-    // if (!seed || seedData.Valor !== conventionalSeed.Valor) {
-    await this.prisma.imeaLogs.create({ data: { data: instanceToPlain(conventionalSeed), type: 'conventionalSeed' } });
-    // }
+    if (!seed || seedData.Valor !== conventionalSeed.Valor) {
+      await this.prisma.imeaLogs.create({ data: { data: instanceToPlain(conventionalSeed), type: 'conventionalSeed' } });
+    }
   }
 
   async getAvailableAndSeeds(limit: number) {
