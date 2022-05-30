@@ -1,13 +1,7 @@
-import { IsCropYear } from '@src/utils/decorators/crop.year.decorator';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsUUID } from 'class-validator';
 
 export class AgritecGetObtentorDto {
-  @IsString()
-  @IsCropYear()
+  @IsUUID()
   @IsNotEmpty()
-  safra: string;
-
-  @IsString()
-  @IsNotEmpty()
-  uf: string;
+  cultiveId: string;
 }
