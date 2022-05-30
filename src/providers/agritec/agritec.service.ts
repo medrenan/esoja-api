@@ -29,7 +29,13 @@ export class AgritecService {
   }
 
   async getObtentores(bodyDto: AgritecGetObtentorDto) {
-    const query = `?safra=${bodyDto.safra}&uf=${bodyDto.uf}&idCultura=${this.culturaAgritec.id}`;
+    const cultive = await this.prisma.cultive.findUnique({ where: { id: bodyDto.cultiveId }, include: { property: true } });
+
+    if (!cultive) throw new BadRequestException('Cultive not found');
+
+    const query = `?safra=${cultive.cropYear}&uf=${cultive.property.state}&idCultura=${this.culturaAgritec.id}`;
+
+    console.log(query);
 
     const obtentores: string[] = [];
 
@@ -37,7 +43,7 @@ export class AgritecService {
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log(err.response);
+        console.log(err.response?.data);
 
         throw new BadRequestException('Error in search to agritec');
       });
@@ -50,13 +56,17 @@ export class AgritecService {
   }
 
   async getCultivaresByObtentor(bodyDto: AgritecGetCultivaresByObtentorDto) {
-    const query = `?safra=${bodyDto.safra}&uf=${bodyDto.uf}&idCultura=${this.culturaAgritec.id}&obtentorMantenedor=${bodyDto.obtentorMantenedor}`;
+    const cultive = await this.prisma.cultive.findUnique({ where: { id: bodyDto.cultiveId }, include: { property: true } });
+
+    if (!cultive) throw new BadRequestException('Cultive not found');
+
+    const query = `?safra=${cultive.cropYear}&uf=${cultive.property.state}&idCultura=${this.culturaAgritec.id}&obtentorMantenedor=${bodyDto.obtentorMantenedor}`;
 
     const cultivares: AgritecCultivaresI[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log(err.response);
+        console.log(err.response?.data);
 
         throw new BadRequestException('Error in search to agritec');
       });
