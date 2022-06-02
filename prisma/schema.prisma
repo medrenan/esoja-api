@@ -52,19 +52,20 @@ model Property {
 }
 
 model Cultive {
-  id                  String            @id @default(uuid())
-  areaTotal           Float
-  expectedProduction  Float?
-  realProduction      Float?
-  description         String?
-  photo               String?
-  cropYear            String
-  plantingDate        String
-  plantsPerMeter      Int
-  metersBetweenPlants Float
-  status              enumCultiveStatus @default(pending)
-  createdAt           DateTime          @default(now())
-  updatedAt           DateTime?         @updatedAt
+  id                      String            @id @default(uuid())
+  areaTotal               Float
+  idCultivar              Int?
+  expectedProduction      Float?
+  expectedBagsPerHectares Float?
+  description             String?
+  photo                   String?
+  cropYear                String
+  plantingDate            String
+  plantsPerMeter          Int
+  metersBetweenPlants     Float
+  status                  enumCultiveStatus @default(pending)
+  createdAt               DateTime          @default(now())
+  updatedAt               DateTime?         @updatedAt
 
   samples     CultiveSamples[]
   coordinates CultiveCoordinates[]
