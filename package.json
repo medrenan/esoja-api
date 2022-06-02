@@ -5,6 +5,10 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "engines": {
+    "node": "16.14.0",
+    "npm": "8.3.1"
+  },
   "scripts": {
     "start:local": "NODE_ENV=local nest start --debug --watch",
     "start:homolog": "NODE_ENV=homolog nest start --debug --watch",
