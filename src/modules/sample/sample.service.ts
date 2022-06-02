@@ -1,11 +1,16 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from '@src/providers/prisma/prisma.service';
 import { QuerybuilderService } from '@src/providers/prisma/querybuilder/querybuilder.service';
+import { ProductivityService } from '../cultive/productivity/productivity.service';
 import { CreateSampleDto } from './dto/create-sample.dto';
 
 @Injectable()
 export class SampleService {
-  constructor(private readonly prisma: PrismaService, private readonly qb: QuerybuilderService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly qb: QuerybuilderService,
+    private readonly productivityService: ProductivityService,
+  ) {}
 
   async create(createDto: CreateSampleDto) {
     const cultive = await this.prisma.cultive.findUnique({ where: { id: createDto.cultiveId }, include: { samples: true } });
@@ -15,6 +20,8 @@ export class SampleService {
     if (cultive.samples.length) throw new BadRequestException('This cultive already has 3 samples');
 
     const samples = await this.prisma.cultiveSamples.createMany({ data: createDto.samples.map((v) => ({ cultiveId: createDto.cultiveId, ...v })) });
+
+    this.productivityService.setProductivity(cultive.id);
 
     return samples;
   }
