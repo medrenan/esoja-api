@@ -35,15 +35,13 @@ export class AgritecService {
 
     const query = `?safra=${cultive.cropYear}&uf=${cultive.property.state}&idCultura=${this.culturaAgritec.id}`;
 
-    console.log(query);
-
     const obtentores: string[] = [];
 
     const res: AgritecCultivaresI[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log(err.response?.data);
+        console.log('getObtentores: ', err?.message);
 
         throw new BadRequestException('Error in search to agritec');
       });
@@ -66,7 +64,7 @@ export class AgritecService {
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log(err.response?.data);
+        console.log('getCultivaresByObtentor: ', err?.message);
 
         throw new BadRequestException('Error in search to agritec');
       });
@@ -83,7 +81,9 @@ export class AgritecService {
       select: { idCultivar: true, plantingDate: true, property: true },
     });
 
-    if (!cultive.idCultivar) {
+    if (!cultive) throw new BadRequestException('Cultive not found');
+
+    if (!cultive?.idCultivar) {
       if (!bodyDto.idCultivar) throw new BadRequestException(`This cultive don't have a idCultivar yet`);
 
       await this.prisma.cultive.update({ where: { id: bodyDto.cultiveId }, data: { idCultivar: bodyDto.idCultivar } });
@@ -91,15 +91,13 @@ export class AgritecService {
       cultive.idCultivar = bodyDto.idCultivar;
     }
 
-    if (!cultive) throw new BadRequestException('Cultive not found');
-
     const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${cultive.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${expectativaProdutividade}`;
 
     const res: AgritecResponseProdutividadeI = await axios
       .get(this.apiUrl + 'produtividade' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log(err);
+        console.log('getProdutividade: ', err?.message);
 
         throw new BadRequestException('Error in search to agritec');
       });
