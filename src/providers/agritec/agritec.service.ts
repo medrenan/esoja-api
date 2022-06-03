@@ -5,7 +5,7 @@ import { AgritecGetCultivaresByObtentorDto } from './dto/cultivares.by.obtentor.
 import { AgritecGetObtentorDto } from './dto/obtentor.dto';
 import { AgritecGetProdutividadeDto } from './dto/produtividade.dto';
 import { AgritecCultivaresI } from './interface/agritec.cultivares.interface';
-import { AgritecProdutividadeI, AgritecResponseProdutividadeI } from './interface/agritec.produtividade.interface';
+import { AgritecResponseProdutividadeI } from './interface/agritec.produtividade.interface';
 
 @Injectable()
 export class AgritecService {
@@ -69,16 +69,23 @@ export class AgritecService {
         throw new BadRequestException('Error in search to agritec');
       });
 
-    return cultivares;
+    const numeroRncs: string[] = [];
+
+    return cultivares.filter((value: AgritecCultivaresI) => {
+      if (!numeroRncs.includes(value.numeroRnc)) {
+        numeroRncs.push(value.numeroRnc);
+
+        return value;
+      }
+    });
   }
 
   async getProdutividade(bodyDto: AgritecGetProdutividadeDto) {
     const capacidadeDeAguaNoSolo = 50; // não temos essa informação
-    const expectativaProdutividade = 0; // não temos essa informação ainda, podemos tentar fazer os calculos
 
     const cultive = await this.prisma.cultive.findUnique({
       where: { id: bodyDto.cultiveId },
-      select: { idCultivar: true, plantingDate: true, property: true },
+      select: { idCultivar: true, plantingDate: true, property: true, expectedProduction: true },
     });
 
     if (!cultive) throw new BadRequestException('Cultive not found');
@@ -91,7 +98,7 @@ export class AgritecService {
       cultive.idCultivar = bodyDto.idCultivar;
     }
 
-    const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${cultive.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${expectativaProdutividade}`;
+    const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${cultive.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${cultive.expectedProduction}`;
 
     const res: AgritecResponseProdutividadeI = await axios
       .get(this.apiUrl + 'produtividade' + query, this.apiConfig)
@@ -102,22 +109,22 @@ export class AgritecService {
         throw new BadRequestException('Error in search to agritec');
       });
 
-    const productivity: AgritecProdutividadeI[] = [];
+    // const productivity: AgritecProdutividadeI[] = [];
 
-    for (let i = 0; i < res.balancoHidrico.length; i++) {
-      productivity.push({
-        balancoHidrico: res.balancoHidrico[i],
-        deficienciaHidrica: res.deficienciaHidrica[i],
-        excedenteHidrico: res.excedenteHidrico[i],
-        grausDia: res.grausDia[i],
-        precipitacao: res.precipitacao[i],
-        produtividadeAlmejada: res.produtividadeAlmejada[i],
-        produtividadeMediaMunicipio: res.produtividadeMediaMunicipio[i],
-        temperaturaMaxima: res.temperaturaMaxima[i],
-        temperaturaMinima: res.temperaturaMinima[i],
-      });
-    }
+    // for (let i = 0; i < res.balancoHidrico.length; i++) {
+    //   productivity.push({
+    //     balancoHidrico: res.balancoHidrico[i],
+    //     deficienciaHidrica: res.deficienciaHidrica[i],
+    //     excedenteHidrico: res.excedenteHidrico[i],
+    //     grausDia: res.grausDia[i],
+    //     precipitacao: res.precipitacao[i],
+    //     produtividadeAlmejada: res.produtividadeAlmejada[i],
+    //     produtividadeMediaMunicipio: res.produtividadeMediaMunicipio[i],
+    //     temperaturaMaxima: res.temperaturaMaxima[i],
+    //     temperaturaMinima: res.temperaturaMinima[i],
+    //   });
+    // }
 
-    return productivity;
+    return res;
   }
 }
