@@ -9,7 +9,7 @@ export class ProductivityService {
   async setProductivity(cultiveId: string) {
     const cultive = await this.prisma.cultive.findUnique({ where: { id: cultiveId }, include: { samples: true } });
 
-    if (!cultive || cultive.samples.length !== 3) throw new BadRequestException(`Error cultive not found or don't have all samples`);
+    if (!cultive || cultive.samples.length !== 3) throw new BadRequestException(`Cultive not found or don't have all samples`);
 
     const seedsTotal = this.countTotalSeeds(cultive.samples);
 
@@ -68,5 +68,22 @@ export class ProductivityService {
     });
 
     return total;
+  }
+
+  async getAllProcutionAvarege(cultiveId: string) {
+    const cultive = await this.prisma.cultive.findUnique({ where: { id: cultiveId }, select: { property: { select: { state: true } } } });
+
+    if (!cultive) throw new BadRequestException(`Cultive not found`);
+
+    const allCultives = await this.prisma.cultive
+      .findMany({
+        where: { property: { state: cultive.property.state } },
+        select: { expectedProduction: true },
+      })
+      .then((res) => res.map((cultive) => cultive.expectedProduction));
+
+    const productionAvarege = allCultives.reduce((prev, curr) => prev + curr) / allCultives.length;
+
+    return productionAvarege;
   }
 }
