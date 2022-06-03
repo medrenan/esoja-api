@@ -158,11 +158,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "bece35b6-e3e0-40a1-b69f-b2feca4f659b",
     "name": "find by id",
-    "url": "{{baseUrl}}/v1/cultive/bbb7bf4e-78b5-49c5-b5e8-767dfaed2db3",
+    "url": "{{baseUrl}}/v1/cultive/e51f0c05-2a57-47b2-8053-896ef8f8be73",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-04-01T13:12:25.928Z",
-    "modified": "2022-05-31T13:16:07.486Z",
+    "modified": "2022-06-03T10:42:37.488Z",
     "headers": [],
     "params": [],
     "body": {
@@ -233,12 +233,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-04-11T11:11:51.374Z",
-    "modified": "2022-05-31T13:15:47.537Z",
+    "modified": "2022-06-03T10:43:19.628Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"cultiveId\": \"bbb7bf4e-78b5-49c5-b5e8-767dfaed2db3\",\n  \"samples\": [\n    {\n      \"name\": \"sample 1\",\n      \"description\": \"plantação 1\",\n      \"grainsPlant1\": 15,\n      \"grainsPlant2\": 17\n    },\n    {\n      \"name\": \"sample 2\",\n      \"description\": \"plantação 2\",\n      \"grainsPlant1\": 2,\n      \"grainsPlant2\": 3\n    },\n    {\n      \"name\": \"sample 3\",\n      \"description\": \"plantação 3\",\n      \"grainsPlant1\": 3,\n      \"grainsPlant2\": 4\n    }\n  ]\n}",
+      "raw": "{\n  \"cultiveId\": \"7b11b5ab-41b4-46b9-baa6-534e72a992e3\",\n  \"samples\": [\n    {\n      \"name\": \"sample 1\",\n      \"description\": \"plantação 1\",\n      \"grainsPlant1\": 15,\n      \"grainsPlant2\": 17\n    },\n    {\n      \"name\": \"sample 2\",\n      \"description\": \"plantação 2\",\n      \"grainsPlant1\": 2,\n      \"grainsPlant2\": 3\n    },\n    {\n      \"name\": \"sample 3\",\n      \"description\": \"plantação 3\",\n      \"grainsPlant1\": 3,\n      \"grainsPlant2\": 4\n    }\n  ]\n}",
       "form": []
     },
     "tests": []
@@ -448,12 +448,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-13T12:54:57.987Z",
-    "modified": "2022-05-30T13:28:18.725Z",
+    "modified": "2022-06-03T10:56:27.241Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"cultiveId\": \"1f36da0e-7b3f-4783-9a35-66c340686ad4\"\n}",
+      "raw": "{\n  \"cultiveId\": \"e51f0c05-2a57-47b2-8053-896ef8f8be73\"\n}",
       "form": []
     },
     "auth": {
@@ -470,12 +470,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-05-13T13:03:52.704Z",
-    "modified": "2022-05-17T13:58:15.571Z",
+    "modified": "2022-06-03T11:20:36.650Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
+      "raw": "{\n  \"cultiveId\": \"e51f0c05-2a57-47b2-8053-896ef8f8be73\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
       "form": []
     },
     "auth": {
@@ -492,12 +492,12 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-05-13T13:42:31.771Z",
-    "modified": "2022-05-13T13:44:39.136Z",
+    "modified": "2022-06-03T11:22:25.473Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\",\n  \"idCultivar\": \"242817\"\n}",
+      "raw": "{\n  \"cultiveId\": \"e51f0c05-2a57-47b2-8053-896ef8f8be73\",\n  \"idCultivar2\": 242817\n}",
       "form": []
     },
     "auth": {
@@ -573,6 +573,20 @@
     "sortNum": 60000,
     "created": "2022-05-20T12:31:01.974Z",
     "modified": "2022-05-20T12:31:12.533Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e4776d03-12e8-468e-8f7d-9f32b52c864f",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "ded542e9-d869-4eb5-9976-58eae1dec5fc",
+    "name": "get all productivity",
+    "url": "{{baseUrl}}/v1/cultive/productivity/e51f0c05-2a57-47b2-8053-896ef8f8be73",
+    "method": "GET",
+    "sortNum": 120000,
+    "created": "2022-06-03T11:48:41.874Z",
+    "modified": "2022-06-03T11:49:24.621Z",
     "headers": [],
     "params": [],
     "tests": []
