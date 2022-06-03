@@ -4,11 +4,7 @@ import { PrismaService } from '@src/providers/prisma/prisma.service';
 
 @Injectable()
 export class ProductivityService {
-  constructor(private readonly prisma: PrismaService) {
-    setTimeout(() => {
-      this.setProductivity('bbb7bf4e-78b5-49c5-b5e8-767dfaed2db3');
-    }, 2000);
-  }
+  constructor(private readonly prisma: PrismaService) {}
 
   async setProductivity(cultiveId: string) {
     const cultive = await this.prisma.cultive.findUnique({ where: { id: cultiveId }, include: { samples: true } });
