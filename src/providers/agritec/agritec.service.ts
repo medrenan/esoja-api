@@ -78,11 +78,22 @@ export class AgritecService {
     const capacidadeDeAguaNoSolo = 50; // não temos essa informação
     const expectativaProdutividade = 0; // não temos essa informação ainda, podemos tentar fazer os calculos
 
-    const cultive = await this.prisma.cultive.findUnique({ where: { id: bodyDto.cultiveId }, include: { property: true } });
+    const cultive = await this.prisma.cultive.findUnique({
+      where: { id: bodyDto.cultiveId },
+      select: { idCultivar: true, plantingDate: true, property: true },
+    });
+
+    if (!cultive.idCultivar) {
+      if (!bodyDto.idCultivar) throw new BadRequestException(`This cultive don't have a idCultivar yet`);
+
+      await this.prisma.cultive.update({ where: { id: bodyDto.cultiveId }, data: { idCultivar: bodyDto.idCultivar } });
+
+      cultive.idCultivar = bodyDto.idCultivar;
+    }
 
     if (!cultive) throw new BadRequestException('Cultive not found');
 
-    const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${bodyDto.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${expectativaProdutividade}`;
+    const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${cultive.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${expectativaProdutividade}`;
 
     const res: AgritecResponseProdutividadeI = await axios
       .get(this.apiUrl + 'produtividade' + query, this.apiConfig)

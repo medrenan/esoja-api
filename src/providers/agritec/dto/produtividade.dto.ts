@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsUUID } from 'class-validator';
 
 export class AgritecGetProdutividadeDto {
   @IsUUID()
@@ -7,5 +7,6 @@ export class AgritecGetProdutividadeDto {
 
   @IsNumber()
   @IsNotEmpty()
+  @IsOptional()
   idCultivar: number;
 }
