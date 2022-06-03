@@ -21,7 +21,7 @@ export class SampleService {
 
     const samples = await this.prisma.cultiveSamples.createMany({ data: createDto.samples.map((v) => ({ cultiveId: createDto.cultiveId, ...v })) });
 
-    this.productivityService.setProductivity(cultive.id);
+    await this.productivityService.setProductivity(cultive.id);
 
     return samples;
   }

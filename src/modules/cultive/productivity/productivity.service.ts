@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Cultive, CultiveSamples } from '@prisma/client';
 import { PrismaService } from '@src/providers/prisma/prisma.service';
 
@@ -13,7 +13,7 @@ export class ProductivityService {
   async setProductivity(cultiveId: string) {
     const cultive = await this.prisma.cultive.findUnique({ where: { id: cultiveId }, include: { samples: true } });
 
-    if (!cultive || cultive.samples.length !== 3) throw new Error(`Error cultive not found or don't have all samples`);
+    if (!cultive || cultive.samples.length !== 3) throw new BadRequestException(`Error cultive not found or don't have all samples`);
 
     const seedsTotal = this.countTotalSeeds(cultive.samples);
 
