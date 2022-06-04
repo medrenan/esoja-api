@@ -2,10 +2,10 @@
   {
     "_id": "e8ca26db-cc40-423e-98e8-bd2c46f8d7ed",
     "name": "local",
-    "default": true,
+    "default": false,
     "sortNum": 10000,
     "created": "2022-04-04T21:55:27.467Z",
-    "modified": "2022-05-17T13:45:41.499Z",
+    "modified": "2022-05-16T00:08:43.319Z",
     "data": [
       {
         "name": "baseUrl",
@@ -13,21 +13,17 @@
       },
       {
         "name": "token",
-        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZiMTE5MWEzLWZjMjQtNGZhNC05NzY5LWM5ZTIwNTA4OTA1NyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZXMiOiJhZG1pbiIsImlhdCI6MTY1Mjc5NTE0MX0.QkHuCGxz3mZKQAUw6AinzEtbkBWgvb9rHBvhqoC-Pz4"
-      },
-      {
-        "name": "baseurl",
-        "value": "http://localhost:3333"
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiNzNjMDNlLWY3MDEtNDI4MC05NWU0LWFlMmRmYmEwMGFhMiIsImVtYWlsIjoid2lsbGlhbi5yc2lsdmExOTk0QGdtYWlsLmNvbSIsInJvbGVzIjoib3duZXIiLCJpYXQiOjE2NTI2NTk3MjN9.7lqAvycfN3IuVYCQxv2dBEuG0SVVmUlQH9an80Hx7dg"
       }
     ]
   },
   {
     "_id": "33dd0def-6099-41c8-a739-34d314541fa7",
     "name": "production",
-    "default": false,
+    "default": true,
     "sortNum": 20000,
     "created": "2022-05-06T11:11:08.767Z",
-    "modified": "2022-05-17T13:45:06.787Z",
+    "modified": "2022-05-13T12:56:24.621Z",
     "data": [
       {
         "name": "baseUrl",
@@ -36,10 +32,6 @@
       {
         "name": "token",
         "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZiMTE5MWEzLWZjMjQtNGZhNC05NzY5LWM5ZTIwNTA4OTA1NyIsImVtYWlsIjoiYWRtaW5AYWRtaW4uY29tIiwicm9sZXMiOiJvd25lciIsImlhdCI6MTY1MTgzNjk1MiwiZXhwIjoxNjU0NDI4OTUyfQ.fhlrqYbnG_agxuIJ5FyRA7QhA2OYH_ddvw-mYCtW0wg"
-      },
-      {
-        "name": "baseurl",
-        "value": "https://api-esoja.herokuapp.com"
       }
     ]
   }
