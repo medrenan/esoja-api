@@ -32,10 +32,12 @@ export class CreateCultiveDto {
 
   @IsNumber()
   @IsNotEmpty()
+  @IsOptional()
   plantsPerMeter: number;
 
   @IsNumber()
   @IsNotEmpty()
+  @IsOptional()
   metersBetweenPlants: number;
 
   @IsEnum(enumCultiveStatus)
@@ -51,7 +53,7 @@ export class CreateCultiveDto {
   photo: string;
 
   expectedProduction: number;
-  realProduction: number;
+  expectedBagsPerHectares: number;
 }
 
 export class CultiveCoordinatesDto {
