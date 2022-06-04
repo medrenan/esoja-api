@@ -17,6 +17,9 @@ export class SampleService {
 
     if (!cultive) throw new BadRequestException('Cultive not found');
 
+    if (!cultive.metersBetweenPlants || !cultive.plantsPerMeter)
+      throw new BadRequestException(`Sample information don't exists yet, please do this first`);
+
     if (cultive.samples.length) throw new BadRequestException('This cultive already has 3 samples');
 
     const samples = await this.prisma.cultiveSamples.createMany({ data: createDto.samples.map((v) => ({ cultiveId: createDto.cultiveId, ...v })) });

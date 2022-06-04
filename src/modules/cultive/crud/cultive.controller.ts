@@ -3,6 +3,7 @@ import { paramId } from '@src/utils/dtos/param.id.dto';
 import { Created, Ok } from '@src/utils/functions/exceptions.fn';
 import { CultiveService } from './cultive.service';
 import { CreateCultiveDto } from './dto/create-cultive.dto';
+import { UpdateCultiveSampleInformationDto } from './dto/update-cultive-sample-information.dto';
 import { UpdateCultiveDto } from './dto/update-cultive.dto';
 
 @Controller({ path: 'cultive', version: '1' })
@@ -28,6 +29,13 @@ export class CultiveController {
     const result = await this.cultiveService.findOne(param.id);
 
     Ok(result);
+  }
+
+  @Put('/sample-information/:id')
+  async updateSampleInformation(@Param() param: paramId, @Body() updateCultiveDto: UpdateCultiveSampleInformationDto) {
+    await this.cultiveService.updateSampleInformation(param.id, updateCultiveDto);
+
+    Ok();
   }
 
   @Put(':id')
