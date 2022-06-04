@@ -55,14 +55,14 @@ model Cultive {
   id                      String            @id @default(uuid())
   areaTotal               Float
   idCultivar              Int?
-  expectedProduction      Float?
-  expectedBagsPerHectares Float?
-  description             String?
-  photo                   String?
   cropYear                String
   plantingDate            String
-  plantsPerMeter          Int
-  metersBetweenPlants     Float
+  plantsPerMeter          Int?
+  expectedProduction      Float?
+  expectedBagsPerHectares Float?
+  metersBetweenPlants     Float?
+  description             String?
+  photo                   String?
   status                  enumCultiveStatus @default(pending)
   createdAt               DateTime          @default(now())
   updatedAt               DateTime?         @updatedAt
