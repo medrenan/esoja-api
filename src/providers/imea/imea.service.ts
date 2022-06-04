@@ -14,7 +14,7 @@ export class ImeaService {
   constructor(private readonly cache: CacheService, private readonly prisma: PrismaService, private readonly qb: QuerybuilderService) {}
 
   async getDashboardData() {
-    const { available, seed } = await this.getAvailableAndSeeds(10);
+    const { available, seed } = await this.getAvailableAndSeeds(5);
 
     return this.mapAvailableAndSeeds(available, seed);
   }
