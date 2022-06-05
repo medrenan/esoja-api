@@ -67,12 +67,26 @@ model Cultive {
   createdAt               DateTime          @default(now())
   updatedAt               DateTime?         @updatedAt
 
-  samples     CultiveSamples[]
-  coordinates CultiveCoordinates[]
-  property    Property?            @relation(onDelete: Cascade, onUpdate: Cascade, fields: [propertyId], references: [id])
-  propertyId  String?
+  samples                  CultiveSamples[]
+  coordinates              CultiveCoordinates[]
+  cultiveProductionAgritec CultiveProductionAgritec[]
+  property                 Property?                  @relation(onDelete: Cascade, onUpdate: Cascade, fields: [propertyId], references: [id])
+  propertyId               String?
 
   @@map("cultives")
+}
+
+model CultiveProductionAgritec {
+  id   String @id @default(uuid())
+  data Json?
+
+  cultive   Cultive @relation(onDelete: Cascade, fields: [cultiveId], references: [id])
+  cultiveId String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  @@map("cultiveProductionAgritec")
 }
 
 model CultiveCoordinates {
