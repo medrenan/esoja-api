@@ -143,12 +143,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-04-01T13:12:25.928Z",
-    "modified": "2022-06-04T14:55:33.150Z",
+    "modified": "2022-06-04T15:11:15.706Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"propertyId\": \"137fd987-8395-48d3-a89b-6b0d5f06a63e\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": -23.30,\n      \"longitude\": 23.22\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter2\": 10,\n  \"metersBetweenPlants2\": 0.12,\n  \"description\": \"plantação 1\",\n  \"cropYear\": \"2021-2022\",\n  \"plantingDate\": \"2021-01-01\"\n}",
+      "raw": "{\n  \"propertyId\": \"8e2cb240-3859-4f1e-bae1-c9e9dbdf5206\",\n  \"cultiveCoordinates\": [\n    {\n      \"latitude\": -23.30,\n      \"longitude\": 23.22\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 22.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    },\n    {\n      \"latitude\": 23.2,\n      \"longitude\": 23.2\n    }\n  ],\n  \"status\": \"inProduction\",\n  \"areaTotal\": 100.2,\n  \"expectedProduction\": 123,\n  \"plantsPerMeter2\": 10,\n  \"metersBetweenPlants2\": 0.12,\n  \"description\": \"plantação 1\",\n  \"cropYear\": \"2021-2022\",\n  \"plantingDate\": \"2021-01-01\"\n}",
       "form": []
     },
     "tests": []
@@ -233,12 +233,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-04-11T11:11:51.374Z",
-    "modified": "2022-05-15T16:39:38.661Z",
+    "modified": "2022-06-04T15:11:22.853Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"cultiveId\": \"477a5b85-670e-4985-a200-c60b4c0dbffa\",\n  \"samples\": [\n    {\n      \"name\": \"sample 1\",\n      \"description\": \"plantação 1\",\n      \"grainsPlant1\": 1,\n      \"grainsPlant2\": 2\n    },\n    {\n      \"name\": \"sample 2\",\n      \"description\": \"plantação 2\",\n      \"grainsPlant1\": 2,\n      \"grainsPlant2\": 3\n    },\n    {\n      \"name\": \"sample 3\",\n      \"description\": \"plantação 3\",\n      \"grainsPlant1\": 3,\n      \"grainsPlant2\": 4\n    }\n  ]\n}",
+      "raw": "{\n  \"cultiveId\": \"36e3bf54-53a3-41dc-970e-f12597e5d3d5\",\n  \"samples\": [\n    {\n      \"name\": \"sample 1\",\n      \"description\": \"plantação 1\",\n      \"grainsPlant1\": 1,\n      \"grainsPlant2\": 2\n    },\n    {\n      \"name\": \"sample 2\",\n      \"description\": \"plantação 2\",\n      \"grainsPlant1\": 2,\n      \"grainsPlant2\": 3\n    },\n    {\n      \"name\": \"sample 3\",\n      \"description\": \"plantação 3\",\n      \"grainsPlant1\": 3,\n      \"grainsPlant2\": 4\n    }\n  ]\n}",
       "form": []
     },
     "tests": []
@@ -448,12 +448,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-13T12:54:57.987Z",
-    "modified": "2022-05-13T12:59:48.010Z",
+    "modified": "2022-06-05T14:09:24.265Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\"\n}",
+      "raw": "{\n  \"cultiveId\": \"36e3bf54-53a3-41dc-970e-f12597e5d3d5\"\n}",
       "form": []
     },
     "auth": {
@@ -470,12 +470,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-05-13T13:03:52.704Z",
-    "modified": "2022-05-13T13:23:02.683Z",
+    "modified": "2022-06-05T14:09:35.916Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"safra\": \"2020-2021\",\n  \"uf\": \"SP\",\n  \"obtentorMantenedor\": \"AGRO NORTE PESQUISA E\"\n}",
+      "raw": "{\n  \"cultiveId\": \"36e3bf54-53a3-41dc-970e-f12597e5d3d5\",\n  \"obtentorMantenedor\": \"EMBRAPA SOJA\"\n}",
       "form": []
     },
     "auth": {
@@ -492,12 +492,12 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-05-13T13:42:31.771Z",
-    "modified": "2022-05-13T13:44:39.136Z",
+    "modified": "2022-06-05T14:10:37.883Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"cultiveId\": \"353b5afb-004f-4ed6-815c-d963857a11cb\",\n  \"idCultivar\": \"242817\"\n}",
+      "raw": "{\n  \"cultiveId\": \"36e3bf54-53a3-41dc-970e-f12597e5d3d5\",\n  \"idCultivar\": \"369044\"\n}",
       "form": []
     },
     "auth": {
@@ -550,11 +550,11 @@
     "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
     "containerId": "bece35b6-e3e0-40a1-b69f-b2feca4f659b",
     "name": "update sample information",
-    "url": "{{baseUrl}}/v1/cultive/sample-information/5ffcd3bb-07e8-4c03-bd47-017ecef3232f",
+    "url": "{{baseUrl}}/v1/cultive/sample-information/36e3bf54-53a3-41dc-970e-f12597e5d3d5",
     "method": "PUT",
     "sortNum": 16250,
     "created": "2022-06-04T14:55:51.151Z",
-    "modified": "2022-06-04T15:01:46.759Z",
+    "modified": "2022-06-04T15:11:36.325Z",
     "headers": [],
     "params": [],
     "body": {
@@ -562,6 +562,34 @@
       "raw": "{\n  \"photo\": \"https://www.google.com.br\",\n  \"plantsPerMeter\": 8,\n  \"metersBetweenPlants\": 0.6\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "d7d16029-2d92-4490-aeeb-f89c0653e84d",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "99155b27-ce29-4a37-8ade-4924098f2c10",
+    "name": "get dashboard",
+    "url": "{{baseUrl}}/v1/imea/dashboard",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-06-04T15:30:04.314Z",
+    "modified": "2022-06-04T15:30:16.360Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "63f1dda1-fd56-4d47-b886-f6c320dc1e82",
+    "colId": "e6e4a153-6d9f-4e1c-a2ac-582c3a1c5d9c",
+    "containerId": "e2f8d89b-dcff-432b-9d3a-df3790b45717",
+    "name": "reset",
+    "url": "{{baseUrl}}/v1/admin/cache/reset",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2022-06-04T15:30:57.564Z",
+    "modified": "2022-06-04T15:31:11.564Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
