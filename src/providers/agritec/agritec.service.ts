@@ -1,11 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import { instanceToPlain, plainToClass } from 'class-transformer';
 import { PrismaService } from '../prisma/prisma.service';
+import { AgritecCultivaresDto } from './dto/agritec.cultivares.dto';
+import { AgritecResponseProdutividadeDto } from './dto/agritec.produtividade.dto';
 import { AgritecGetCultivaresByObtentorDto } from './dto/cultivares.by.obtentor.dto';
 import { AgritecGetObtentorDto } from './dto/obtentor.dto';
 import { AgritecGetProdutividadeDto } from './dto/produtividade.dto';
-import { AgritecCultivaresI } from './interface/agritec.cultivares.interface';
-import { AgritecResponseProdutividadeI } from './interface/agritec.produtividade.interface';
 
 @Injectable()
 export class AgritecService {
@@ -37,7 +38,7 @@ export class AgritecService {
 
     const obtentores: string[] = [];
 
-    const res: AgritecCultivaresI[] = await axios
+    const res: AgritecCultivaresDto[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
@@ -60,7 +61,7 @@ export class AgritecService {
 
     const query = `?safra=${cultive.cropYear}&uf=${cultive.property.state}&idCultura=${this.culturaAgritec.id}&obtentorMantenedor=${bodyDto.obtentorMantenedor}`;
 
-    const cultivares: AgritecCultivaresI[] = await axios
+    const cultivares: AgritecCultivaresDto[] = await axios
       .get(this.apiUrl + 'cultivares' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
@@ -71,7 +72,7 @@ export class AgritecService {
 
     const numeroRncs: string[] = [];
 
-    return cultivares.filter((value: AgritecCultivaresI) => {
+    return cultivares.filter((value: AgritecCultivaresDto) => {
       if (!numeroRncs.includes(value.numeroRnc)) {
         numeroRncs.push(value.numeroRnc);
 
@@ -85,10 +86,18 @@ export class AgritecService {
 
     const cultive = await this.prisma.cultive.findUnique({
       where: { id: bodyDto.cultiveId },
-      select: { idCultivar: true, plantingDate: true, property: true, expectedProduction: true },
+      select: {
+        idCultivar: true,
+        plantingDate: true,
+        property: true,
+        expectedProduction: true,
+        cultiveProductionAgritec: true,
+      },
     });
 
     if (!cultive) throw new BadRequestException('Cultive not found');
+
+    if (cultive.cultiveProductionAgritec.length) return plainToClass(AgritecResponseProdutividadeDto, cultive.cultiveProductionAgritec[0].data);
 
     if (!cultive?.idCultivar) {
       if (!bodyDto.idCultivar) throw new BadRequestException(`This cultive don't have a idCultivar yet`);
@@ -100,7 +109,7 @@ export class AgritecService {
 
     const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${cultive.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${cultive.expectedProduction}`;
 
-    const res: AgritecResponseProdutividadeI = await axios
+    const res: AgritecResponseProdutividadeDto = await axios
       .get(this.apiUrl + 'produtividade' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
@@ -109,21 +118,8 @@ export class AgritecService {
         throw new BadRequestException('Error in search to agritec');
       });
 
-    // const productivity: AgritecProdutividadeI[] = [];
-
-    // for (let i = 0; i < res.balancoHidrico.length; i++) {
-    //   productivity.push({
-    //     balancoHidrico: res.balancoHidrico[i],
-    //     deficienciaHidrica: res.deficienciaHidrica[i],
-    //     excedenteHidrico: res.excedenteHidrico[i],
-    //     grausDia: res.grausDia[i],
-    //     precipitacao: res.precipitacao[i],
-    //     produtividadeAlmejada: res.produtividadeAlmejada[i],
-    //     produtividadeMediaMunicipio: res.produtividadeMediaMunicipio[i],
-    //     temperaturaMaxima: res.temperaturaMaxima[i],
-    //     temperaturaMinima: res.temperaturaMinima[i],
-    //   });
-    // }
+    if (Object.keys(res).length !== 0)
+      await this.prisma.cultiveProductionAgritec.create({ data: { data: instanceToPlain(res), cultiveId: bodyDto.cultiveId } });
 
     return res;
   }
