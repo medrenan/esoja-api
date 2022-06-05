@@ -107,13 +107,18 @@ export class AgritecService {
       cultive.idCultivar = bodyDto.idCultivar;
     }
 
-    const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${cultive.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${cultive.plantingDate}&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${cultive.expectedProduction}`;
+    const query = `?idCultura=${this.culturaAgritec.id}&idCultivar=${cultive.idCultivar}&codigoIBGE=${cultive.property.ibgeCode}&dataPlantio=${
+      cultive.plantingDate
+    }&latitude=${cultive.property.latitude}&longitude=${cultive.property.longitude}&cad=${capacidadeDeAguaNoSolo}&expectativaProdutividade=${
+      cultive.expectedProduction || 0
+    }`;
 
     const res: AgritecResponseProdutividadeDto = await axios
       .get(this.apiUrl + 'produtividade' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log('getProdutividade: ', err);
+        console.log('getProdutividade: ', err?.message);
+        console.log('getProdutividade: ', err?.response);
 
         throw new BadRequestException('Error in search to agritec');
       });
