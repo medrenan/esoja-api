@@ -113,7 +113,7 @@ export class AgritecService {
       .get(this.apiUrl + 'produtividade' + query, this.apiConfig)
       .then((res) => res.data.data)
       .catch((err: AxiosError) => {
-        console.log('getProdutividade: ', err?.message);
+        console.log('getProdutividade: ', err);
 
         throw new BadRequestException('Error in search to agritec');
       });
