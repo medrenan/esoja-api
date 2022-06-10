@@ -20,7 +20,10 @@ import { UtilsModule } from './utils/utils.module';
   controllers: [AppController],
 })
 export class AppModule {
-  ensureAuthenticatedExclude = [];
+  ensureAuthenticatedExclude = [
+    { path: '/v1/auth/sign-in', method: RequestMethod.POST },
+    { path: '/v1/auth/social-sign-in', method: RequestMethod.POST },
+  ];
 
   configure(consumer: MiddlewareConsumer) {
     consumer
