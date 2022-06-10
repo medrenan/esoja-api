@@ -23,6 +23,7 @@ export class AppModule {
   ensureAuthenticatedExclude = [
     { path: '/v1/auth/sign-in', method: RequestMethod.POST },
     { path: '/v1/auth/social-sign-in', method: RequestMethod.POST },
+    { path: '/v1/user', method: RequestMethod.POST },
   ];
 
   configure(consumer: MiddlewareConsumer) {
