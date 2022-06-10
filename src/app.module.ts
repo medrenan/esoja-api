@@ -20,7 +20,7 @@ import { UtilsModule } from './utils/utils.module';
   controllers: [AppController],
 })
 export class AppModule {
-  ensureAuthenticatedExclude = [{ path: 'v1/(.*)', method: RequestMethod.ALL }];
+  ensureAuthenticatedExclude = [];
 
   configure(consumer: MiddlewareConsumer) {
     consumer
