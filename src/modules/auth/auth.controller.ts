@@ -3,12 +3,14 @@ import { AuthService } from './auth.service';
 import { SignInDto } from './dto/sign.in.dto';
 import { SocialSignInDto } from './dto/social.sign.in.dto';
 
-@Controller({ path: 'auth', version: '1' })
+@Controller({ path: 'auth'})
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/sign-in')
   async signIn(@Body() body: SignInDto) {
+    console.log("AAAAAAAAAAAAAAARGGGGGGGGGGHHHHHHHHHHHHH");
+    
     return this.authService.signIn(body.email, body.password);
   }
 

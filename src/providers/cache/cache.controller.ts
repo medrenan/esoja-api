@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { Ok } from '@src/utils/functions/exceptions.fn';
 import { CacheService } from './cache.service';
 
-@Controller({ path: 'admin/cache', version: '1' })
+@Controller({ path: 'admin/cache' })
 export class CacheController {
   constructor(private readonly cacheService: CacheService) {}
 

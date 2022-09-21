@@ -4,7 +4,7 @@ import { paramId } from '@src/utils/dtos/param.id.dto';
 import { CreateSampleDto } from './dto/create-sample.dto';
 import { Created } from '@src/utils/functions/exceptions.fn';
 
-@Controller({ path: 'sample', version: '1' })
+@Controller({ path: 'sample' })
 export class SampleController {
   constructor(private readonly sampleService: SampleService) {}
 

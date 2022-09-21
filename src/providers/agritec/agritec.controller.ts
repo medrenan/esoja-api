@@ -5,7 +5,7 @@ import { AgritecGetCultivaresByObtentorDto } from './dto/cultivares.by.obtentor.
 import { AgritecGetObtentorDto } from './dto/obtentor.dto';
 import { AgritecGetProdutividadeDto } from './dto/produtividade.dto';
 
-@Controller({ path: 'agritec', version: '1' })
+@Controller({ path: 'agritec' })
 export class AgritecController {
   constructor(private readonly agritecService: AgritecService) {}
 

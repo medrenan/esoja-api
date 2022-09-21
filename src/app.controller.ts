@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import * as git from 'git-last-commit';
 import { DateTime } from 'luxon';
 
-@Controller({ path: 'admin', version: '1' })
+@Controller({ path: 'admin' })
 export class AppController {
   @Get('/healthcheck')
   async healthCheck() {

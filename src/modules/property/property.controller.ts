@@ -5,7 +5,7 @@ import { UpdatePropertyDto } from './dto/update-property.dto';
 import { Created, Ok } from '@src/utils/functions/exceptions.fn';
 import { paramId } from '@src/utils/dtos/param.id.dto';
 
-@Controller({ path: 'property', version: '1' })
+@Controller({ path: 'property' })
 export class PropertyController {
   constructor(private readonly propertyService: PropertyService) {}
 

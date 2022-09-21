@@ -3,7 +3,7 @@ import { paramId } from '@src/utils/dtos/param.id.dto';
 import { Ok } from '@src/utils/functions/exceptions.fn';
 import { ProductivityService } from './productivity.service';
 
-@Controller({ path: 'cultive/productivity', version: '1' })
+@Controller({ path: 'cultive/productivity' })
 export class ProductivityController {
   constructor(private readonly productivityService: ProductivityService) {}
 

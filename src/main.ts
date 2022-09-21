@@ -7,7 +7,7 @@ async function bootstrap() {
 
   globalAppConfig(app);
 
-  const whitelist = ['http://localhost:3000'];
+  const whitelist = ['http://localhost:3333'];
 
   app.enableCors({
     credentials: true,
