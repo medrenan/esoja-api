@@ -9,8 +9,6 @@ export class AuthController {
 
   @Post('/sign-in')
   async signIn(@Body() body: SignInDto) {
-    console.log("AAAAAAAAAAAAAAARGGGGGGGGGGHHHHHHHHHHHHH");
-    
     return this.authService.signIn(body.email, body.password);
   }
 
