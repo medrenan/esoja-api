@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { Ok } from '@src/utils/functions/exceptions.fn';
 import { ImeaService } from './imea.service';
 
-@Controller({ path: 'imea', version: '1' })
+@Controller({ path: 'imea' })
 export class ImeaController {
   constructor(private readonly imeaService: ImeaService) {}
 

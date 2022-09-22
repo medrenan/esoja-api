@@ -6,7 +6,7 @@ import { CreateCultiveDto } from './dto/create-cultive.dto';
 import { UpdateCultiveSampleInformationDto } from './dto/update-cultive-sample-information.dto';
 import { UpdateCultiveDto } from './dto/update-cultive.dto';
 
-@Controller({ path: 'cultive', version: '1' })
+@Controller({ path: 'cultive' })
 export class CultiveController {
   constructor(private readonly cultiveService: CultiveService) {}
 

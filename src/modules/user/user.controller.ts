@@ -4,7 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { paramId } from '@src/utils/dtos/param.id.dto';
 
-@Controller({ path: 'user', version: '1' })
+@Controller({ path: 'user' })
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
