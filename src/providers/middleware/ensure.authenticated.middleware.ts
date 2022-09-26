@@ -7,7 +7,7 @@ export class EnsureAuthenticated implements NestMiddleware {
   constructor(private readonly jwtService: JwtService) {}
 
   async use(req: Request, res: Response, next: any) {
-    // return next();
+    return next();
 
     const AuthHeader = req.headers.authorization;
 
