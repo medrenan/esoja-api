@@ -11,22 +11,22 @@ export class PropertyService {
   constructor(private readonly prisma: PrismaService, private readonly qb: QuerybuilderService) {}
 
   async create(createDto: CreatePropertyDto) {
-    const user = await this.prisma.user.findUnique({ where: { id: createDto.userId } });
+      const user = await this.prisma.user.findUnique({ where: { id: createDto.userId } });
 
-    if (!user) throw new BadRequestException('User not found');
+      if (!user) throw new BadRequestException('User not found');
 
-    const zipcodeData = await CepPromise(createDto.zipcode);
+      const zipcodeData = await CepPromise(createDto.zipcode);
+      
+      createDto.city = zipcodeData.city;
+      createDto.state = zipcodeData.state;
+      createDto.ibgeCode = (await getIbgeCode(zipcodeData.state, zipcodeData.city))+"";
 
-    createDto.city = zipcodeData.city;
-    createDto.state = zipcodeData.state;
-    createDto.ibgeCode = await getIbgeCode(zipcodeData.state, zipcodeData.city);
-
-    const property = await this.prisma.property.create({ data: createDto }).catch(() => {
-      throw new BadRequestException('Error on create property');
-    });
-
-    return property;
-  }
+      const property = await this.prisma.property.create({ data: createDto }).catch(() => {
+        throw new BadRequestException('Error on create property');
+      });
+      
+      return property;
+}
 
   async findAll() {
     const query = await this.qb.query('property');

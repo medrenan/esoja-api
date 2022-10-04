@@ -11,7 +11,7 @@ export class CultiveController {
   constructor(private readonly cultiveService: CultiveService) {}
 
   @Post()
-  async create(@Body() createCultiveDto: CreateCultiveDto) {
+  async create(@Body() createCultiveDto: CreateCultiveDto) {    
     const result = await this.cultiveService.create(createCultiveDto);
 
     Created({ id: result?.id });
