@@ -14,7 +14,7 @@ export class SampleController {
 
     Created(result);
   }
-
+ 
   @Get()
   async findAll() {
     return this.sampleService.findAll();
@@ -25,6 +25,12 @@ export class SampleController {
     return this.sampleService.findOne(param.id);
   }
 
+  @Delete(':id')
+  async delete(@Param() param: paramId) {
+    await this.cultiveService.delete(param.id);
+
+    Ok();
+  }
   // @Put(':id')
   // async update(@Param() param: paramId, @Body() updateSampleDto: UpdateSampleDto) {
   //   await this.sampleService.update(param.id, updateSampleDto);
