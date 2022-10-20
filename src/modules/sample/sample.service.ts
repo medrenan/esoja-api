@@ -45,6 +45,12 @@ export class SampleService {
     return sample;
   }
 
+  async delete(id: string) {
+    await this.prisma.cultiveSamples.delete({ where: { id: id } }).catch(() => {
+      throw new BadRequestException('Error on delete sample');
+    });
+  }
+
   // async update(id: string, updateDto: UpdateSampleDto) {
   //   const sample = await this.prisma.cultiveSamples.findUnique({ where: { id: id } });
 

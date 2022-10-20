@@ -9,7 +9,7 @@ import { UpdateCultiveDto } from './dto/update-cultive.dto';
 @Controller({ path: 'cultive' })
 export class CultiveController {
   constructor(private readonly cultiveService: CultiveService) {}
-
+ 
   @Post()
   async create(@Body() createCultiveDto: CreateCultiveDto) {    
     const result = await this.cultiveService.create(createCultiveDto);
