@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete, Put} from '@nestjs/common';
 import { SampleService } from './sample.service';
 import { paramId } from '@src/utils/dtos/param.id.dto';
 import { CreateSampleDto } from './dto/create-sample.dto';
@@ -14,7 +14,7 @@ export class SampleController {
 
     Created(result);
   }
-
+ 
   @Get()
   async findAll() {
     return this.sampleService.findAll();
@@ -25,10 +25,8 @@ export class SampleController {
     return this.sampleService.findOne(param.id);
   }
 
-  // @Put(':id')
-  // async update(@Param() param: paramId, @Body() updateSampleDto: UpdateSampleDto) {
-  //   await this.sampleService.update(param.id, updateSampleDto);
-
-  //   Ok();
-  // }
+  @Delete(':id')
+  async delete(@Param() param: paramId) {
+    await this.sampleService.delete(param.id);
+  }
 }

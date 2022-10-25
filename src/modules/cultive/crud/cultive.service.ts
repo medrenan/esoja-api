@@ -63,10 +63,12 @@ export class CultiveService {
 
     await this.prisma.cultive.update({ where: { id: id }, data: updateDto });
   }
-
+  
   async delete(id: string) {
     await this.prisma.cultive.delete({ where: { id: id } }).catch(() => {
       throw new BadRequestException('Error on delete property');
     });
   }
+
+  
 }
