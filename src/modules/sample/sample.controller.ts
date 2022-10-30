@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post, Delete, Put} from '@nestjs/common';
 import { SampleService } from './sample.service';
 import { paramId } from '@src/utils/dtos/param.id.dto';
 import { CreateSampleDto } from './dto/create-sample.dto';
+import { UpdateSampleDto } from './dto/update-sample.dto';
 import { Created } from '@src/utils/functions/exceptions.fn';
 
 @Controller({ path: 'sample' })
@@ -23,6 +24,11 @@ export class SampleController {
   @Get(':id')
   async findOne(@Param() param: paramId) {
     return this.sampleService.findOne(param.id);
+  }
+
+  @Put(':id')
+  async update(@Param() param: paramId, @Body() UpdateSampleDto: UpdateSampleDto) {
+    await this.sampleService.update(param.id, UpdateSampleDto);
   }
 
   @Delete(':id')

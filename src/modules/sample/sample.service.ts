@@ -3,6 +3,7 @@ import { PrismaService } from '@src/providers/prisma/prisma.service';
 import { QuerybuilderService } from '@src/providers/prisma/querybuilder/querybuilder.service';
 import { ProductivityService } from '../cultive/productivity/productivity.service';
 import { CreateSampleDto } from './dto/create-sample.dto';
+import { UpdateSampleDto } from './dto/update-sample.dto';
 
 @Injectable()
 export class SampleService {
@@ -10,7 +11,7 @@ export class SampleService {
     private readonly prisma: PrismaService,
     private readonly qb: QuerybuilderService,
     private readonly productivityService: ProductivityService,
-  ) {}
+  ) { }
 
   async create(createDto: CreateSampleDto) {
     const cultive = await this.prisma.cultive.findUnique({ where: { id: createDto.cultiveId }, include: { samples: true } });
@@ -51,11 +52,9 @@ export class SampleService {
     });
   }
 
-  // async update(id: string, updateDto: UpdateSampleDto) {
-  //   const sample = await this.prisma.cultiveSamples.findUnique({ where: { id: id } });
-
-  //   if (!sample) throw new BadRequestException('Sample not found');
-
-  //   await this.prisma.cultiveSamples.update({ where: { id: id }, data: updateDto });
-  // }
+  async update(id: string, updateDto: UpdateSampleDto) {
+    const sample = await this.prisma.cultiveSamples.findUnique({ where: { id: id } });
+    if (!sample) throw new BadRequestException('Sample not found');
+    await this.prisma.cultiveSamples.update({ where: { id: id }, data: updateDto });
+  }
 }
