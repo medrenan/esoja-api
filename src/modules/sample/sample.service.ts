@@ -52,9 +52,9 @@ export class SampleService {
     });
   }
 
-  async update(id: string, updateDto: UpdateSampleDto) {
-    const sample = await this.prisma.cultiveSamples.findUnique({ where: { id: id } });
-    if (!sample) throw new BadRequestException('Sample not found');
-    await this.prisma.cultiveSamples.update({ where: { id: id }, data: updateDto });
-  }
+//  async update(id: string, updateDto: UpdateSampleDto) {
+//    const sample = await this.prisma.cultiveSamples.findUnique({ where: { id: id } });
+//    if (!sample) throw new BadRequestException('Sample not found');
+//    await this.prisma.cultiveSamples.update({ where: { id: id }, data: updateDto });
+//  }
 }
